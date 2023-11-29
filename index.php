@@ -66,7 +66,7 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="account.php?tipo=singup"
+              <a class="nav-link" href="account.php?tipo=signup"
                 >Crear Cuenta</a
               >
             </li>

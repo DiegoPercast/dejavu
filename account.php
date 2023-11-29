@@ -1,4 +1,5 @@
 <?php
+//Variables para imprimir las distintas opciones
 $login = '
 <div id="login">
 <img src="assets/img/logos/rojo.png" alt="logo" class="logoform">
@@ -7,8 +8,24 @@ $login = '
     <input type="email" name="nombrecorreo" id="nombrecorreo" placeholder="Correo electronico" required>
     <input type="password" name="contra" id="contra" placeholder="Contraseña" required>
     <input type="submit" name="submit" class="enviar" value="Iniciar sesión">
+    <input type="hidden" name="typeuser" value="normal">
 </form>
 <p id="sincuenta">¿No tienes una cuenta? Registrate <a href="account.php?tipo=signup">click aqui</a></p>
+<p id="sincuenta"> Si eres administrador <a href="account.php?tipo=admin">click aqui</a></p>
+<a href="index.php" class="regresar">Regresar</a>
+</div>';
+
+$admin = '
+<div id="login">
+<img src="assets/img/logos/rojo.png" alt="logo" class="logoform">
+<div class="Titulo">Iniciar sesion (Admin)</div>
+<form action="#" class="form">
+    <input type="email" name="nombrecorreo" id="nombrecorreo" placeholder="Correo electronico" required>
+    <input type="password" name="contra" id="contra" placeholder="Contraseña" required>
+    <input type="submit" name="submit" class="enviar" value="Iniciar sesión">
+    <input type="hidden" name="typeuser" value="admin">
+</form>
+<p id="sincuenta">¿No eres administrador? Inicia sesion <a href="account.php?tipo=login">click aqui</a></p>
 <a href="index.php" class="regresar">Regresar</a>
 </div>';
 
@@ -40,12 +57,15 @@ echo '
 <body>
   <div class="formaccount">
 ';
+//Se imprime depende de que tipo de pagina sea
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
   if (isset($_GET['tipo'])) {
     if ($_GET['tipo'] == 'login') {
       echo $login;
-    } else {
+    } elseif($_GET['tipo']=='signup'){
       echo $signup;
+    }elseif ($_GET['tipo']=='admin') {
+      echo $admin;
     }
 
   } else {
@@ -57,4 +77,7 @@ echo '
 </body>
 </html>
 ';
+
+//Funciones de inicio de sesion
+
 ?>

@@ -39,7 +39,7 @@
             <a class="nav-link" href="account.php?tipo=login">Iniciar Sesión</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="account.php?tipo=singup">Crear Cuenta</a>
+            <a class="nav-link" href="account.php?tipo=signup">Crear Cuenta</a>
           </li>
         </ul>
       </div>
