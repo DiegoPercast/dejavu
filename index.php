@@ -58,14 +58,18 @@
               <a class="nav-link" href="#portfolio">Cartelera</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Inscripciones</a>
+              <a class="nav-link" href="#academia">Academia</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="account.html">Iniciar Sesión</a>
+              <a class="nav-link" href="account.php?tipo=login"
+                >Iniciar Sesión</a
+              >
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Crear Cuenta</a>
-              </li>
+              <a class="nav-link" href="account.php?tipo=singup"
+                >Crear Cuenta</a
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -108,7 +112,11 @@
               <i class="fas fa-masks-theater fa-stack-1x fa-inverse"></i>
             </span>
             <h4 class="my-3">Increibles actuaciones</h4>
-            <p class="text-muted">Contamos con actores de primera, actores que sin lugar a dudas te sacaran una sonrisa, o te provocaran emociones nunca antes vistas</p>
+            <p class="text-muted">
+              Contamos con actores de primera, actores que sin lugar a dudas te
+              sacaran una sonrisa, o te provocaran emociones que nunca antes
+              hayas sentido
+            </p>
           </div>
           <div class="col-md-4">
             <span class="fa-stack fa-4x">
@@ -149,14 +157,14 @@
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/img/portfolio/1.jpg"
+                  src="assets/img/portfolio/1.webp"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Threads</div>
+                <div class="portfolio-caption-heading">Hamlet</div>
                 <div class="portfolio-caption-subheading text-muted">
-                  Illustration
+                  William Shakespeare
                 </div>
               </div>
             </div>
@@ -176,14 +184,14 @@
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/img/portfolio/2.jpg"
+                  src="assets/img/portfolio/2.webp"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Explore</div>
+                <div class="portfolio-caption-heading">Romeo y Julieta</div>
                 <div class="portfolio-caption-subheading text-muted">
-                  Graphic Design
+                  William Shakespeare
                 </div>
               </div>
             </div>
@@ -203,14 +211,14 @@
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/img/portfolio/3.jpg"
+                  src="assets/img/portfolio/3.webp"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Finish</div>
+                <div class="portfolio-caption-heading">La Divina Comedia</div>
                 <div class="portfolio-caption-subheading text-muted">
-                  Identity
+                  Dante Alighieri
                 </div>
               </div>
             </div>
@@ -230,14 +238,14 @@
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/img/portfolio/4.jpg"
+                  src="assets/img/portfolio/4.webp"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Lines</div>
+                <div class="portfolio-caption-heading">La vida es un sueño</div>
                 <div class="portfolio-caption-subheading text-muted">
-                  Branding
+                  Pedro Calderón de la Barca
                 </div>
               </div>
             </div>
@@ -257,14 +265,16 @@
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/img/portfolio/5.jpg"
+                  src="assets/img/portfolio/5.webp"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Southwest</div>
+                <div class="portfolio-caption-heading">
+                  El fantasma de la opera
+                </div>
                 <div class="portfolio-caption-subheading text-muted">
-                  Website Design
+                  Gaston Leroux
                 </div>
               </div>
             </div>
@@ -284,19 +294,33 @@
                 </div>
                 <img
                   class="img-fluid"
-                  src="assets/img/portfolio/6.jpg"
+                  src="assets/img/portfolio/6.webp"
                   alt="..."
                 />
               </a>
               <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Window</div>
+                <div class="portfolio-caption-heading">
+                  El sueño de una noche de verano
+                </div>
                 <div class="portfolio-caption-subheading text-muted">
-                  Photography
+                  William Shakespeare
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <!--Academia seccion-->
+    <section class="academia" id="academia">
+      <div class="container">
+        <div class="academia-subheading">Déjà vu</div>
+        <div class="academia-heading text-uppercase">
+          Unete a nuestra academia y cumple tus sueños!
+        </div>
+        <a class="btn btn-primary btn-xl text-uppercase" href="academia.php"
+          >Inscribirme ahora</a
+        >
       </div>
     </section>
 
@@ -305,7 +329,7 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-4 text-lg-start">
-            Copyright &copy; Your Website 2023
+            Copyright &copy;Déjà vu S.A de C.V
           </div>
           <div class="col-lg-4 my-3 my-lg-0">
             <a
@@ -329,9 +353,11 @@
           </div>
           <div class="col-lg-4 text-lg-end">
             <a class="link-dark text-decoration-none me-3" href="#!"
-              >Privacy Policy</a
+              >Política de privacidad</a
             >
-            <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+            <a class="link-dark text-decoration-none" href="#!"
+              >Terminos de uso</a
+            >
           </div>
         </div>
       </div>
@@ -355,30 +381,32 @@
               <div class="col-lg-8">
                 <div class="modal-body">
                   <!-- Project details-->
-                  <h2 class="text-uppercase">Project Name</h2>
+                  <h2 class="text-uppercase">Hamlet</h2>
                   <p class="item-intro text-muted">
-                    Lorem ipsum dolor sit amet consectetur.
+                    Escrita por William Shakespeare
                   </p>
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/1.jpg"
+                    src="assets/img/portfolio/1.webp"
                     alt="..."
                   />
                   <p>
-                    Use this area to describe your project. Lorem ipsum dolor
-                    sit amet, consectetur adipisicing elit. Est blanditiis
-                    dolorem culpa incidunt minus dignissimos deserunt repellat
-                    aperiam quasi sunt officia expedita beatae cupiditate,
-                    maiores repudiandae, nostrum, reiciendis facere nemo!
+                    Escrita por William Shakespeare entre 1599 y 1601, Hamlet
+                    nos cuenta la historia del príncipe de Dinamarca, el cual
+                    enloquece al saber que su padre fue asesinado por su tío. La
+                    obra abarca temas como la venganza, la traición, la locura e
+                    incluso el incesto, siendo el trabajo más extenso de
+                    Shakespeare conocido. Debido a su fama, ha sido adaptada no
+                    sólo al teatro sino también al cine y la televisión.
                   </p>
                   <ul class="list-inline">
                     <li>
-                      <strong>Client:</strong>
-                      Threads
+                      <strong>Nombre:</strong>
+                      Hamlet
                     </li>
                     <li>
-                      <strong>Category:</strong>
-                      Illustration
+                      <strong>Autor:</strong>
+                      William Shakespeare
                     </li>
                   </ul>
                   <button
@@ -387,7 +415,7 @@
                     type="button"
                   >
                     <i class="fas fa-xmark me-1"></i>
-                    Close Project
+                    Volver
                   </button>
                 </div>
               </div>
@@ -414,30 +442,33 @@
               <div class="col-lg-8">
                 <div class="modal-body">
                   <!-- Project details-->
-                  <h2 class="text-uppercase">Project Name</h2>
+                  <h2 class="text-uppercase">Romeo y Julieta</h2>
                   <p class="item-intro text-muted">
-                    Lorem ipsum dolor sit amet consectetur.
+                    Escrita por William Shakespeare
                   </p>
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/2.jpg"
+                    src="assets/img/portfolio/2.webp"
                     alt="..."
                   />
                   <p>
-                    Use this area to describe your project. Lorem ipsum dolor
-                    sit amet, consectetur adipisicing elit. Est blanditiis
-                    dolorem culpa incidunt minus dignissimos deserunt repellat
-                    aperiam quasi sunt officia expedita beatae cupiditate,
-                    maiores repudiandae, nostrum, reiciendis facere nemo!
+                    Ésta es otra de las obras clásicas de Shakespeare y
+                    probablemente la historia romántica más famosa en el mundo.
+                    El número original de esta obra es “La más excelente y
+                    lamentable tragedia de Romeo y Julieta”. La trama cuenta el
+                    enamoramiento de sus dos protagonistas, pertenecientes a
+                    familias enemigas, Montesco y Capuleto. El argumento se
+                    caracteriza por su final trágico, cuando los amantes mueren
+                    tras no poder enfrentarse al odio entre sus parentes.
                   </p>
                   <ul class="list-inline">
                     <li>
-                      <strong>Client:</strong>
-                      Explore
+                      <strong>Nombre:</strong>
+                      Romeo y Julieta
                     </li>
                     <li>
-                      <strong>Category:</strong>
-                      Graphic Design
+                      <strong>Autor:</strong>
+                      William Shakespeare
                     </li>
                   </ul>
                   <button
@@ -446,7 +477,7 @@
                     type="button"
                   >
                     <i class="fas fa-xmark me-1"></i>
-                    Close Project
+                    Volver
                   </button>
                 </div>
               </div>
@@ -473,30 +504,33 @@
               <div class="col-lg-8">
                 <div class="modal-body">
                   <!-- Project details-->
-                  <h2 class="text-uppercase">Project Name</h2>
+                  <h2 class="text-uppercase">La Divina Comedia</h2>
                   <p class="item-intro text-muted">
-                    Lorem ipsum dolor sit amet consectetur.
+                    Escrita por Dante Alighieri
                   </p>
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/3.jpg"
+                    src="assets/img/portfolio/3.webp"
                     alt="..."
                   />
                   <p>
-                    Use this area to describe your project. Lorem ipsum dolor
-                    sit amet, consectetur adipisicing elit. Est blanditiis
-                    dolorem culpa incidunt minus dignissimos deserunt repellat
-                    aperiam quasi sunt officia expedita beatae cupiditate,
-                    maiores repudiandae, nostrum, reiciendis facere nemo!
+                    La adaptación teatral se basa en el poema del mismo nombre,
+                    por Dante Alighieri, que narra el viaje de su protagonista
+                    por el paraíso, el purgatorio y el infierno. Lo más
+                    interesante sobre esta obra, son sus múltiples referencias a
+                    la religión, la filosofía, las matemáticas y la astronomía,
+                    entre otros conceptos que le rodean de simbolismos diversos.
+                    Traducida a 25 lenguas alrededor del mundo, no es de
+                    extrañar que la poesía de Alighieri haya llegado al teatro.
                   </p>
                   <ul class="list-inline">
                     <li>
-                      <strong>Client:</strong>
-                      Finish
+                      <strong>Nombre:</strong>
+                      La divina Comedia
                     </li>
                     <li>
-                      <strong>Category:</strong>
-                      Identity
+                      <strong>Autor:</strong>
+                      Dante Alighieri
                     </li>
                   </ul>
                   <button
@@ -505,7 +539,7 @@
                     type="button"
                   >
                     <i class="fas fa-xmark me-1"></i>
-                    Close Project
+                    Volver
                   </button>
                 </div>
               </div>
@@ -532,30 +566,35 @@
               <div class="col-lg-8">
                 <div class="modal-body">
                   <!-- Project details-->
-                  <h2 class="text-uppercase">Project Name</h2>
+                  <h2 class="text-uppercase">La vida es un sueño</h2>
                   <p class="item-intro text-muted">
-                    Lorem ipsum dolor sit amet consectetur.
+                    Escrita por Pedro Calderón de la Barca
                   </p>
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/4.jpg"
+                    src="assets/img/portfolio/4.webp"
                     alt="..."
                   />
                   <p>
-                    Use this area to describe your project. Lorem ipsum dolor
-                    sit amet, consectetur adipisicing elit. Est blanditiis
-                    dolorem culpa incidunt minus dignissimos deserunt repellat
-                    aperiam quasi sunt officia expedita beatae cupiditate,
-                    maiores repudiandae, nostrum, reiciendis facere nemo!
+                    El escritor Pedro Calderón de la Barca dio a conocer esta
+                    obra en 1635, la cual habla sobre un príncipe desterrado de
+                    su reino por su propio padre, debido a una profecía fatal.
+                    Lo que vuelve tan interesante a esta puesta en escena, son
+                    los temas filosóficos y religiosos que componen su trama,
+                    abarcando tópicos de religiones tan variadas como el
+                    hinduismo, el budismo y las tradiciones judeocristianas,
+                    entre otros. Se conoce a ésta como una de las obras más
+                    famosas en español y es clásico que constantemente vuelve a
+                    las tablas.
                   </p>
                   <ul class="list-inline">
                     <li>
-                      <strong>Client:</strong>
-                      Lines
+                      <strong>Nombre:</strong>
+                      La vida es un sueño
                     </li>
                     <li>
-                      <strong>Category:</strong>
-                      Branding
+                      <strong>Autor:</strong>
+                      Pedro Calderon de la Barca
                     </li>
                   </ul>
                   <button
@@ -564,7 +603,7 @@
                     type="button"
                   >
                     <i class="fas fa-xmark me-1"></i>
-                    Close Project
+                    Volver
                   </button>
                 </div>
               </div>
@@ -591,30 +630,32 @@
               <div class="col-lg-8">
                 <div class="modal-body">
                   <!-- Project details-->
-                  <h2 class="text-uppercase">Project Name</h2>
-                  <p class="item-intro text-muted">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </p>
+                  <h2 class="text-uppercase">El fantasma de la opera</h2>
+                  <p class="item-intro text-muted">Escrita por Gaston Leroux</p>
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/5.jpg"
+                    src="assets/img/portfolio/5.webp"
                     alt="..."
                   />
                   <p>
-                    Use this area to describe your project. Lorem ipsum dolor
-                    sit amet, consectetur adipisicing elit. Est blanditiis
-                    dolorem culpa incidunt minus dignissimos deserunt repellat
-                    aperiam quasi sunt officia expedita beatae cupiditate,
-                    maiores repudiandae, nostrum, reiciendis facere nemo!
+                    Éste es uno de los musicales más aclamados alrededor del
+                    mundo y está basado en la novela de Gaston Leroux, publicada
+                    en 1910. La historia nos presenta a un ser oscuro que
+                    intenta ganarse el amor de Christine Daaé, joven aspirante a
+                    cantante de ópera. Se le considera una obra brillante para
+                    mezclar elementos góticos con géneros como el terror, el
+                    drama y el romance. La adaptación más famosa ha sido la obra
+                    musical para Broadway, a cargo del talentoso Andrew Lloyd
+                    Weber.
                   </p>
                   <ul class="list-inline">
                     <li>
-                      <strong>Client:</strong>
-                      Southwest
+                      <strong>Nombre:</strong>
+                      El fantasma de la opera
                     </li>
                     <li>
-                      <strong>Category:</strong>
-                      Website Design
+                      <strong>Autor:</strong>
+                      Gasto Leroux
                     </li>
                   </ul>
                   <button
@@ -623,7 +664,7 @@
                     type="button"
                   >
                     <i class="fas fa-xmark me-1"></i>
-                    Close Project
+                    Volver
                   </button>
                 </div>
               </div>
@@ -650,30 +691,32 @@
               <div class="col-lg-8">
                 <div class="modal-body">
                   <!-- Project details-->
-                  <h2 class="text-uppercase">Project Name</h2>
+                  <h2 class="text-uppercase">Sueño de una noche de verano</h2>
                   <p class="item-intro text-muted">
-                    Lorem ipsum dolor sit amet consectetur.
+                    Escrita por William Shakespeare
                   </p>
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/6.jpg"
+                    src="assets/img/portfolio/6.webp"
                     alt="..."
                   />
                   <p>
-                    Use this area to describe your project. Lorem ipsum dolor
-                    sit amet, consectetur adipisicing elit. Est blanditiis
-                    dolorem culpa incidunt minus dignissimos deserunt repellat
-                    aperiam quasi sunt officia expedita beatae cupiditate,
-                    maiores repudiandae, nostrum, reiciendis facere nemo!
+                    Una obra más de William Shakespeare, escrita en torno al año
+                    1595. Esta obra presenta un lío amoroso durante la boda de
+                    Teseo, el duque de Atenas e Hipólita, la reina de las
+                    Amazonas. El reino de las hadas se mezcla con el de los
+                    humanos, dando lugar a una divertida y romántica comedia. La
+                    obra ha sido adaptada no sólo al cine, sino también a la
+                    televisión ya los cómics, abarcando incluso comerciales.
                   </p>
                   <ul class="list-inline">
                     <li>
-                      <strong>Client:</strong>
-                      Window
+                      <strong>Nombre:</strong>
+                      Sueño de una noche de verano
                     </li>
                     <li>
-                      <strong>Category:</strong>
-                      Photography
+                      <strong>Autor:</strong>
+                      William Shakespeare
                     </li>
                   </ul>
                   <button
@@ -682,7 +725,7 @@
                     type="button"
                   >
                     <i class="fas fa-xmark me-1"></i>
-                    Close Project
+                    Volver
                   </button>
                 </div>
               </div>
@@ -695,10 +738,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
   </body>
 </html>

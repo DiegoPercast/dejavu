@@ -1,0 +1,62 @@
+.containeradmin{
+    background-color: white;
+    height: 70vh;
+    margin-top: 10vh;
+    width: 80vw;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#adminsections{
+    min-height: 80%;
+    min-width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.adminsection{
+    -webkit-box-shadow: 0px 0px 35px -9px rgba(0, 0, 0, 0.159);
+    -moz-box-shadow: 0px 0px 35px -9px rgba(0,0,0,0.159);
+    box-shadow: 0px 0px 35px -9px rgba(0,0,0,0.159);
+    border: 1px solid rgba(0, 0, 0, 0.077);
+    width: 45%;
+    height: 100%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.titlesec{
+    font-size: 25px;
+}
+.listadmin{
+    height: 80%;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.listelement{
+    -webkit-box-shadow: 0px 0px 15px -9px rgba(0, 0, 0, 0.159);
+    -moz-box-shadow: 0px 0px 15px -9px rgba(0,0,0,0.159);
+    box-shadow: 0px 0px 15px -9px rgba(0,0,0,0.159);
+    border: 1px solid rgba(0, 0, 0, 0.205);
+    height: 28%;
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.listelement h4{
+    font-weight: light;
+}
+.iconadmin{
+    height: 15px;
+    width: 15px;
+}
