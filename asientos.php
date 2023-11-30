@@ -49,8 +49,79 @@
   <main>
     <div class="wrapper">
       <h1>Selecciona tus asientos</h1>
-      <div class="grid">
-        
+      <div class="tickets">
+        <div class="ticket-selector">
+          <div class="head">
+            <div class="title">Movie Name:</div>
+          </div>
+          <div class="seats">
+            <div class="status">
+              <div class="item">Disponibles</div>
+              <div class="item">Ocupados</div>
+              <div class="item">Seleccionados</div>
+            </div>
+            <div class="all-seats">
+              <input type="checkbox" name="tickets" id="s1">
+              <label for="s1" class="seat"></label>
+            </div>
+          </div>
+          <div class="timings">
+            <div class="dates">
+              <input type="radio" name="date" id="d1" checked />
+              <label for="d1" class="dates-item">
+                <div class="day">Sun</div>
+                <div class="date">11</div>
+              </label>
+              <input type="radio" name="date" id="d2" checked />
+              <label for="d1" class="dates-item">
+                <div class="day">Mon</div>
+                <div class="date">12</div>
+              </label>
+              <input type="radio" name="date" id="d3" checked />
+              <label for="d1" class="dates-item">
+                <div class="day">Tues</div>
+                <div class="date">13</div>
+              </label>
+              <input type="radio" name="date" id="d4" checked />
+              <label for="d1" class="dates-item">
+                <div class="day">Wed</div>
+                <div class="date">14</div>
+              </label>
+              <input type="radio" name="date" id="d5" checked />
+              <label for="d1" class="dates-item">
+                <div class="day">Thurs</div>
+                <div class="date">15</div>
+              </label>
+              <input type="radio" name="date" id="d6" checked />
+              <label for="d1" class="dates-item">
+                <div class="day">Fri</div>
+                <div class="date">16</div>
+              </label>
+              <input type="radio" name="date" id="d7" checked />
+              <label for="d1" class="dates-item">
+                <div class="day">Sat</div>
+                <div class="date">17</div>
+              </label>
+            </div>
+            <div class="times">
+              <input type="radio" name="time" id="t1" checked />
+              <label for="t1" class="time">11:00</label>
+              <input type="radio" name="time" id="t2" checked />
+              <label for="t2" class="time">14:30</label>
+              <input type="radio" name="time" id="t3" checked />
+              <label for="t3" class="time">18:00</label>
+              <input type="radio" name="time" id="t4" checked />
+              <label for="t4" class="time">21:30</label>
+            </div>
+          </div>
+        </div>
+        <div class="price">
+          <div class="total">
+            <span class="count">0</span> Tickets
+          </div>
+          <div class="amount">0</div>
+          <button type="button">Reservar</button>
+        </div>
       </div>
     </div>
   </main>

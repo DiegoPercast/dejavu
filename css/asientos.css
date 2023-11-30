@@ -88,9 +88,120 @@ body {
   background: white;
 }
 
-.wrapper {
-  padding: 3rem;
+.tickets {
+  padding: 1rem;
   width: 80%;
   background: white;
-  margin: 0 auto;
+  border-radius: 3mm;
+  overflow: auto;
+}
+
+.ticket-selector {
+  background: rgb(243, 243, 243);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 1.2rem;
+}
+
+.head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.seats {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 150px;
+  position: relative;
+}
+
+.status {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+}
+
+.seats::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 220px;
+  height: 7px;
+  background: rgb(141, 198, 255);
+  border-radius: 0 0 3mm 3mm;
+  border-top: 0.3mm solid rgb(180, 180, 180); 
+}
+
+.item {
+  font-size: 0.8rem;
+  position: relative;
+}
+
+.item::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -12px;
+  transform: translate(0, -50%);
+  width: 10px;
+  height: 10px;
+  background: rgb(255, 255, 255);
+  outline: 0.2mm solid rgb(120, 120, 120);
+  border-radius: 0.3mm;
+}
+
+.item:nth-child(2)::before {
+  background: rgb(180, 180, 180);
+  outline: none;
+}
+
+.item:nth-child(3)::before {
+  background: rgb(28, 185, 120);
+  outline: none;
+}
+
+.all-seats {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 0.7rem;
+}
+
+.seat {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 0.5mm;
+  outline: 0.3mm solid rgb(180, 180, 180);
+  cursor: pointer;
+}
+
+.all-seats input:checked + label {
+  background: rgb(28, 185, 120);
+  outline: none;
+}
+
+.booked .seat {
+  background: rgb(180, 180, 180);
+  outline: none;
+}
+
+input {
+  display: none;
 }
