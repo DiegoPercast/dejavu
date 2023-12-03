@@ -64,8 +64,32 @@
     <!--Main-->
     <div class="containeradmin">
         <h1 class="title">Agregar Eventos</h1>
-        <form action="#">
-
+        <form action="#" class="formcrud">
+            <label for="fecha">Fecha del evento: </label> 
+            <input type="date" required> 
+            <label for="hora">Hora del evento: </label> 
+            <input type="time" required> 
+            <label for="sala">Sala del evento: </label> 
+            <select name="" id="" required> 
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="">No hay salas</option>
+                
+            </select> 
+            <label for="obra">Obra: </label> 
+            <select name="" id="" required>
+                <option value="1">Hamlet</option>
+                <option value="2">Romeo y julieta</option>
+                <option value="3">La divina comedia</option>
+                <option value="">No obras</option>
+            </select> 
+            <input type="submit" class="buttontable" value="Agregar" style="width: 80px;">
+        </form>
+        <form action="crudadmin.php" method="post" class="formcrud">
+            <input type="hidden" name="inicio" value="simon">
+            <input type="hidden" name="crud" value="eventos">
+            <input type="submit" class="buttontable" value="Cancelar" style="width: 80px;">
         </form>
       
 

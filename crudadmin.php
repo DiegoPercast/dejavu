@@ -12,27 +12,25 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         obras.titulo as 'titulo'
                     FROM eventos
                     LEFT JOIN obras
-                    ON eventos.id_obra_2 = obras.id_obra
-                    ";
-            if($result = $mysqli->query($sql)){
-                if($result->num_rows > 0){
-                        while($row = $result->fetch_array()){
-                            $contenidocrud.= "<td>".$row['id']."</td>";
-                            $contenidocrud.= "<td>".$row['hora']."</td>";
-                            $contenidocrud.= "<td>".$row['fecha']."</td>";
-                            $contenidocrud.= "<td>".$row['sala']."</td>";
-                            $contenidocrud.= "<td>".$row['titulo']."</td>";
-                            $contenidocrud.= '<td class="iconostd"><img src="assets/img/icons/ver.png" alt="Ver mas" title="Ver asientos" class="iconstable"><img src="assets/img/icons/editar.png" alt="Ver mas" title="Editar" class="iconstable"><img src="assets/img/icons/eliminar.png" alt="Ver mas" title="Eliminar" class="iconstable"></td>';
-
-        
+                    ON eventos.id_obra_2 = obras.id_obra";
+            if ($result = $mysqli->query($sql)) {
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_array()) {
+                        $contenidocrud .= "<tr>";
+                        $contenidocrud .= "<td>".$row['id']."</td>";
+                        $contenidocrud .= "<td>".$row['hora']."</td>";
+                        $contenidocrud .= "<td>".$row['fecha']."</td>";
+                        $contenidocrud .= "<td>".$row['sala']."</td>";
+                        $contenidocrud .= "<td>".$row['titulo']."</td>";
+                        $contenidocrud .= '<td class="iconostd"><img src="assets/img/icons/ver.png" alt="Ver mas" title="Ver asientos" class="iconstable"><img src="assets/img/icons/editar.png" alt="Ver mas" title="Editar" class="iconstable"><img src="assets/img/icons/eliminar.png" alt="Ver mas" title="Eliminar" class="iconstable"></td>';
+                        $contenidocrud .= "</tr>";
+                    }
+                } else {
+                    $contenidocrud = "<tr><td colspan='6'>No se han encontrado registros</td></tr>";
                 }
-                }else {
-                    $contenidocrud = "No se han encontrado registros";
-                    
-                }  
                 $result->free();
                 $mysqli->close();
-            }else{
+            } else {
                 echo "<script>alert('nojalaconsulta')</script>";
             }
             break;
@@ -57,9 +55,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                             $contenidocrud.= "<td>".$row['sala']."</td>";
                             $contenidocrud.= "<td>".$row['titulo']."</td>";
                             $contenidocrud.= '<td class="iconostd"><img src="assets/img/icons/ver.png" alt="Ver mas" title="Ver asientos" class="iconstable"><img src="assets/img/icons/editar.png" alt="Ver mas" title="Editar" class="iconstable"><img src="assets/img/icons/eliminar.png" alt="Ver mas" title="Eliminar" class="iconstable"></td>';
-
-        
-                }
+                        }
                 }else {
                     $contenidocrud = "No se han encontrado registros";
                     
@@ -84,16 +80,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     ";
             if($result = $mysqli->query($sql)){
                 if($result->num_rows > 0){
-                        while($row = $result->fetch_array()){
-                            $contenidocrud.= "<td>".$row['id']."</td>";
-                            $contenidocrud.= "<td>".$row['hora']."</td>";
-                            $contenidocrud.= "<td>".$row['fecha']."</td>";
-                            $contenidocrud.= "<td>".$row['sala']."</td>";
-                            $contenidocrud.= "<td>".$row['titulo']."</td>";
-                            $contenidocrud.= '<td class="iconostd"><img src="assets/img/icons/ver.png" alt="Ver mas" title="Ver asientos" class="iconstable"><img src="assets/img/icons/editar.png" alt="Ver mas" title="Editar" class="iconstable"><img src="assets/img/icons/eliminar.png" alt="Ver mas" title="Eliminar" class="iconstable"></td>';
-
-        
-                }
+                    while($row = $result->fetch_array()){
+                            $contenidocrud.= "<tr>";
+                            $contenidocrud.= "</tr>";
+                        }
                 }else {
                     $contenidocrud = "No se han encontrado registros";
                     
@@ -115,6 +105,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
           </form>
           <form action="agregaradmin.php" method="post" id="formagregar">
                 <input type="hidden" name="inicio" value="simon">
+                <input type="hidden" name="accion" value="formulario">
                 <input type="hidden" name="crud" value="eventos">
           </form>
             <button class="buttontable" onclick="cambio('."'formagregar'".')"><img src="assets/img/icons/mas.png" alt="agregar" style="height: 20px; width: 20px; margin-right: 5px;">Agregar evento</button>
@@ -130,9 +121,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 <th>Obra</th>
                 <th>Acciones</th>
               </tr>
-              <tr>
-                '.$contenidocrud.'
-              </tr>
+              '.$contenidocrud.'
               
             </table>
     

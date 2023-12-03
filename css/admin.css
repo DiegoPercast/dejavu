@@ -73,6 +73,7 @@
     border-radius: 10px;
     display: flex;
     align-items: center;
+    
 }
 .tablacuerpo{
     width: 60%;
@@ -124,4 +125,31 @@ tr:nth-child(even){
 .iconostd img:hover{
     transform: scale(1.2);
     transition: 200ms;
+}
+.formcrud{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.formcrud select{
+    text-align: center;
+    width: 150px;
+
+}
+.formcrud input[type=date], [type=time]{
+    width: 150px;
+}
+.formcrud > :not(marquee){
+    margin-top: 10px;
+}
+.ventanaemergente{
+    background-color: white;
+    height: 50vh;
+    width: 70vw;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
