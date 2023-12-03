@@ -70,9 +70,10 @@
 .buttontable{
     height: 28px;
     border: 1px solid rgba(0, 0, 0, 0.205);
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
+    background-color: #fdf3f3;
     
 }
 .tablacuerpo{

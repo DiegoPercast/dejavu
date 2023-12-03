@@ -22,7 +22,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         $contenidocrud .= "<td>".$row['fecha']."</td>";
                         $contenidocrud .= "<td>".$row['sala']."</td>";
                         $contenidocrud .= "<td>".$row['titulo']."</td>";
-                        $contenidocrud .= '<td class="iconostd"><img src="assets/img/icons/ver.png" alt="Ver mas" title="Ver asientos" class="iconstable"><img src="assets/img/icons/editar.png" alt="Ver mas" title="Editar" class="iconstable"><img src="assets/img/icons/eliminar.png" alt="Ver mas" title="Eliminar" class="iconstable"></td>';
+                        $contenidocrud.= '<td class="iconostd"><img src="assets/img/icons/ver.png" alt="Ver mas" title="Ver asientos" class="iconstable"><img src="assets/img/icons/editar.png" alt="Ver mas" title="Editar" class="iconstable">';
+                        $contenidocrud.= '<form action="eliminaradmin.php" method="post">
+                                            <input type="hidden" name="inicio" value="simon">
+                                            <input type="hidden" name="accion" value="preguntar">
+                                            <input type="hidden" name="crud" value="eventos">
+                                            <input type="hidden" name="id" value="'.$row['id'].'" id="nolose">
+                                            <input type="image" id="image" alt="Login" src="assets/img/icons/eliminar.png" alt="Ver mas" title="Eliminar" class="iconstable" style="margin-top:5px;"/>
+                                          </form></td>';
                         $contenidocrud .= "</tr>";
                     }
                 } else {
