@@ -5,7 +5,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $final='
                 <form action="crudadmin.php" method="post" class="formcrud" id="regresar">
                     <input type="hidden" name="inicio" value="simon">
-                    <input type="hidden" name="crud" value="eventos">
+                    <input type="hidden" name="crud" value="'.$_POST['crud'].'">
                     <input type="submit" class="buttontable" value="Cancelar" style="width: 80px;">
                 </form>
             </div>
@@ -98,9 +98,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         ';
         echo $inicio;
         if ($_POST['accion']=='formulario') {
+          $resultado = "";
             switch ($_POST['crud']) {
                 case 'eventos':
-                    $resultado = "";
                     $sql = "SELECT * FROM salas;";
                     if ($result=$mysqli->query($sql)) {
                         $resultado .= '<select name="sala" id="sala" required> ';
@@ -150,29 +150,94 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     '.$resultado.'
                     <input type="hidden" name="inicio" value="simon">
                     <input type="hidden" name="accion" value="procesar">
+                    <input type="hidden" name="crud" value="'.$_POST['crud'].'">
                     <input type="submit" class="buttontable" value="Agregar" style="width: 80px;">
                 </form>
                 ',
-                "obras" => '',
-                "salas" => '',
+                "obras" => '
+                <form action="agregaradmin.php" class="formcrud" method="post">
+                    <label for="titulo">Titulo de la obra: </label> 
+                    <input type="text" name="titulo" required> 
+                    <label for="autor">Autor de la obra: </label> 
+                    <input type="text" name="autor" required> 
+                    <label for="desc">Descripcion de la obra: </label> 
+                    <input type="text" name="descripcion" required> 
+                    <label for="imagen">Imagen de la obra: </label> 
+                    <input type="text" name="imagen" required> 
+                    <input type="hidden" name="inicio" value="simon">
+                    <input type="hidden" name="accion" value="procesar">
+                    <input type="hidden" name="crud" value="'.$_POST['crud'].'">
+                    <input type="submit" class="buttontable" value="Agregar" style="width: 80px;">
+                </form>',
+                "salas" => '
+                <form action="agregaradmin.php" class="formcrud" method="post">
+                    <label for="columnas">Columnas de la sala: </label> 
+                    <input type="number" name="columnas" required> 
+                    <label for="filas">Filas de la sala: </label> 
+                    <input type="number" name="filas" required> 
+                    
+                    <input type="hidden" name="inicio" value="simon">
+                    <input type="hidden" name="accion" value="procesar">
+                    <input type="hidden" name="crud" value="'.$_POST['crud'].'">
+                    <input type="submit" class="buttontable" value="Agregar" style="width: 80px;">
+                </form>
+                ',
             ];
             echo $cruds[$_POST['crud']];
             echo $final;
         }if($_POST['accion']=='procesar'){
             echo $final;
-            $sql = "INSERT INTO eventos (fecha, hora, id_sala_2, id_obra_2) VALUES (?, ?, ?, ?)";
-            if($stmt = $mysqli->prepare($sql)){
-                $stmt->bind_param("ssii", $fecha,$hora,$sala, $obra);
-                $fecha = $_POST['fecha'];
-                $hora = $_POST['hora'];
-                $sala = $_POST['sala'];
-                $obra = $_POST['obra'];
-                if($stmt->execute()){
-                    echo "<script>cambio('regresar')</script>";
-                    exit();
-                } else{
-                    echo "Algo salió mal. Intente mas tarde.";
+            switch ($_POST['crud']) {
+              case 'eventos':
+                $sql = "INSERT INTO eventos (fecha, hora, id_sala_2, id_obra_2) VALUES (?, ?, ?, ?)";
+                if($stmt = $mysqli->prepare($sql)){
+                    $stmt->bind_param("ssii", $fecha,$hora,$sala, $obra);
+                    $fecha = $_POST['fecha'];
+                    $hora = $_POST['hora'];
+                    $sala = $_POST['sala'];
+                    $obra = $_POST['obra'];
+                    if($stmt->execute()){
+                        echo "<script>cambio('regresar')</script>";
+                        exit();
+                    } else{
+                        echo "Algo salió mal. Intente mas tarde.";
+                    }
                 }
+                break;
+                case 'obras':
+                  $sql = "INSERT INTO obras (titulo, autor, descripcion, imagen) VALUES (?, ?, ?, ?)";
+                  if($stmt = $mysqli->prepare($sql)){
+                      $stmt->bind_param("ssss", $titulo, $autor, $descripcion, $imagen);
+                      $titulo = $_POST['titulo'];
+                      $autor = $_POST['autor'];
+                      $descripcion = $_POST['descripcion'];
+                      $imagen = $_POST['imagen'];
+                      if($stmt->execute()){
+                          echo "<script>cambio('regresar')</script>";
+                          exit();
+                        } else{
+                          echo "<script>cambio('regresar')</script>";
+                          exit();
+                      }
+                  }
+                  break;
+                  case 'salas':
+                    $sql = "INSERT INTO salas (numerocolumnas, numerofilas) VALUES (?, ?)";
+                    if($stmt = $mysqli->prepare($sql)){
+                        $stmt->bind_param("ii", $columnas, $filas);
+                        $columnas = $_POST['columnas'];
+                        $filas = $_POST['filas'];
+                        
+                        if($stmt->execute()){
+                            echo "<script>cambio('regresar')</script>";
+                            exit();
+                        } else{
+                            echo "Algo salió mal. Intente mas tarde.";
+                        }
+                    }
+                break;
+              
+              
             }
             $stmt->close();
         }

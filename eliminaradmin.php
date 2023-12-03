@@ -81,7 +81,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     </form>
                     <form action="crudadmin.php" method="post" class="formcrud">
                         <input type="hidden" name="inicio" value="simon">
-                        <input type="hidden" name="crud" value="eventos">
+                        <input type="hidden" name="crud" value="'.$_POST['crud'].'">
                         <input type="submit" class="buttontable" value="Cancelar" style="width: 80px; scale: 1.5; margin-top: 50px;">
                     </form>
                     </div>
@@ -117,7 +117,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     echo '
                     <form action="crudadmin.php" method="post" class="formcrud" id="regresar">
                         <input type="hidden" name="inicio" value="simon">
-                        <input type="hidden" name="crud" value="eventos">
+                        <input type="hidden" name="crud" value="'.$_POST['crud'].'">
                     </form>
                     <script>document.getElementById("regresar").submit()</script>
                     ';

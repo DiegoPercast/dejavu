@@ -87,7 +87,40 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
           }
           break;
         case 'salas':
-            # code...
+          $contenidocrud = "";
+          $sql = "SELECT * FROM salas";
+          if ($result = $mysqli->query($sql)) {
+              if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_array()) {
+                      $contenidocrud .= "<tr>";
+                      $contenidocrud .= "<td>".$row['id_sala']."</td>";
+                      $contenidocrud .= "<td>".$row['numerocolumnas']."</td>";
+                      $contenidocrud .= "<td>".$row['numerofilas']."</td>";
+                      $contenidocrud.= '<td class="iconostd"><img src="assets/img/icons/ver.png" alt="Ver mas" title="Ver asientos" class="iconstable">';
+                      $contenidocrud.= '<form action="modificaradmin.php" method="post">
+                                          <input type="hidden" name="inicio" value="simon">
+                                          <input type="hidden" name="accion" value="formulario">
+                                          <input type="hidden" name="crud" value="salas">
+                                          <input type="hidden" name="id" value="'.$row['id_sala'].'" id="nolose">
+                                          <input type="image" id="image" alt="Login" src="assets/img/icons/editar.png" alt="Ver mas" title="Editar" class="iconstable" style="margin-top:5px;"/>
+                                        </form>';
+                      $contenidocrud.= '<form action="eliminaradmin.php" method="post">
+                                          <input type="hidden" name="inicio" value="simon">
+                                          <input type="hidden" name="accion" value="preguntar">
+                                          <input type="hidden" name="crud" value="salas">
+                                          <input type="hidden" name="id" value="'.$row['id_sala'].'" id="nolose">
+                                          <input type="image" id="image" alt="Login" src="assets/img/icons/eliminar.png" alt="Ver mas" title="Eliminar" class="iconstable" style="margin-top:5px;"/>
+                                        </form></td>';
+                      $contenidocrud .= "</tr>";
+                  }
+              } else {
+                  $contenidocrud = "<tr><td colspan='6'>No se han encontrado registros</td></tr>";
+              }
+              $result->free();
+              $mysqli->close();
+          } else {
+              echo "<script>alert('nojalaconsulta')</script>";
+          }
           break;
         
     }
@@ -154,15 +187,16 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         ',
         "salas" => '
         <h1 class="title">Administrar Salas</h1>
+        <form action="administrador.php" method="post" id="formregresar">
+          <input type="hidden" name="inicio" value="simon">
+        </form>
+        <form action="agregaradmin.php" method="post" id="formagregar">
+              <input type="hidden" name="inicio" value="simon">
+              <input type="hidden" name="accion" value="formulario">
+              <input type="hidden" name="crud" value="salas">
+        </form>
           <span class="cabecera">
-            <form action="administrador.php" method="post" id="formregresar">
-                <input type="hidden" name="inicio" value="simon">
-            </form>
-            <form action="agregaradmin.php" method="post" id="formagregar">
-                <input type="hidden" name="inicio" value="simon">
-                <input type="hidden" name="crud" value="salas">
-            </form>
-            <button class="buttontable" onclick="cambio('."'formagregar'".')"><img src="assets/img/icons/mas.png" alt="agregar" style="height: 20px; width: 20px; margin-right: 5px;">Agregar evento</button>
+            <button class="buttontable" onclick="cambio('."'formagregar'".')"><img src="assets/img/icons/mas.png" alt="agregar" style="height: 20px; width: 20px; margin-right: 5px;">Agregar sala</button>
             <button class="buttontable" onclick="cambio('."'formregresar'".')"><img src="assets/img/icons/regresar.png" alt="regresar" style="height: 20px; width: 20px; margin-right: 5px;">Regresar</button>
           </span>
           <div class="tablacuerpo" >
