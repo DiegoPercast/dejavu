@@ -154,3 +154,6 @@ tr:nth-child(even){
     align-items: center;
     justify-content: center;
 }
+.imagencrud{
+    height: 50px;
+}
