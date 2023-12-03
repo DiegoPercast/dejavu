@@ -64,24 +64,28 @@ $paginaadmin = '
     </nav>
     <!--Main-->
     <div class="containeradmin">
+      <form action="crudadmin.php" method="post" id="formulariocrud">
+          <input type="hidden" name="inicio" value="simon">
+          <input type="hidden" name="crud" value="" id="nombrecrud">
+      </form>
       <h1 class="title">Administrar teatro</h1>
       <div id="adminsections">
         <div id="sec1" class="adminsection">
           <div class="titlesec">Venta de boletos</div>
-          <div class="listadmin">
-            <div class="listelement" style="margin-top: 12px;">
-              <img src="assets/img/icons/calendario.png" alt="calendario" class="iconadmin">
-              <h5>Administrar eventos</h3>
+            <div class="listadmin">
+              <div class="listelement" style="margin-top: 12px;" onclick="cambio('."'eventos'".')">
+                <img src="assets/img/icons/calendario.png" alt="calendario" class="iconadmin">
+                <h5>Administrar eventos</h3>
               </div>
-              <div class="listelement">
+              <div class="listelement" onclick="cambio('."'obras'".')">
                 <img src="assets/img/icons/teatro.png" alt="mascaras" class="iconadmin">
                 <h5>Administrar obras</h3>
-                </div>
-                <div class="listelement">
-              <img src="assets/img/icons/butacas-de-cine.png" alt="butacas" class="iconadmin">
-              <h5>Administrar salas</h5>
+              </div>
+              <div class="listelement" onclick="cambio('."'salas'".')">
+                <img src="assets/img/icons/butacas-de-cine.png" alt="butacas" class="iconadmin">
+                <h5>Administrar salas</h5>
+              </div>
             </div>
-          </div>
         </div>
         <div id="sec2" class="adminsection">
           <div class="titlesec">Academia</div>
@@ -115,6 +119,13 @@ $paginaadmin = '
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script>
+      function cambio(pagina){
+        document.getElementById("nombrecrud").value=pagina;
+        document.getElementById("formulariocrud").submit();
+        
+      }
+    </script>
   </body>
 </html>
 ';
