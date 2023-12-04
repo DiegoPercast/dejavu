@@ -72,6 +72,10 @@
                     <a class="nav-link" href="#academia">Academia</a>
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" href="carrito.html"
+                      >Carrito de compras</a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" href="account.php?tipo=logout"
                       >Cerrar sesión</a>
                   </li>
