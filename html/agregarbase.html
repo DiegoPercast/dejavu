@@ -1,5 +1,3 @@
-<?php
-$paginaadmin = '
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -56,7 +54,8 @@ $paginaadmin = '
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="account.php?tipo=logout">Cerrar sesión</a>
+              <a class="nav-link" href="account.php?tipo=logout"
+                >Cerrar sesión</a>
             </li>
           </ul>
         </div>
@@ -64,50 +63,38 @@ $paginaadmin = '
     </nav>
     <!--Main-->
     <div class="containeradmin">
-      <form action="crudadmin.php" method="post" id="formulariocrud">
-          <input type="hidden" name="inicio" value="simon">
-          <input type="hidden" name="crud" value="" id="nombrecrud">
-      </form>
-      <h1 class="title">Administrar teatro</h1>
-      <div id="adminsections">
-        <div id="sec1" class="adminsection">
-          <div class="titlesec">Venta de boletos</div>
-            <div class="listadmin">
-              <div class="listelement" style="margin-top: 12px;" onclick="cambio('."'eventos'".')">
-                <img src="assets/img/icons/calendario.png" alt="calendario" class="iconadmin">
-                <h5>Administrar eventos</h3>
-              </div>
-              <div class="listelement" onclick="cambio('."'obras'".')">
-                <img src="assets/img/icons/teatro.png" alt="mascaras" class="iconadmin">
-                <h5>Administrar obras</h3>
-              </div>
-              <div class="listelement" onclick="cambio('."'salas'".')">
-                <img src="assets/img/icons/butacas-de-cine.png" alt="butacas" class="iconadmin">
-                <h5>Administrar salas</h5>
-              </div>
-            </div>
-        </div>
-        <div id="sec2" class="adminsection">
-          <div class="titlesec">Academia</div>
-          <div class="listadmin">
-            <div class="listelement" style="margin-top: 12px;">
-              <img src="assets/img/icons/graduado.png" alt="butacas" class="iconadmin">
-              <h5>Administrar alumnos</h5>
-              
-            </div>
-            <div class="listelement">
-              <img src="assets/img/icons/graduacion.png" alt="butacas" class="iconadmin">
-              <h5>Administrar cursos</h5>
-              
-            </div>
-            <div class="listelement">
-              <img src="assets/img/icons/cine.png" alt="butacas" class="iconadmin">
-              <h5>Administrar salas</h5>
+        <h1 class="title">Agregar Eventos</h1>
+        <form action="#" class="formcrud">
+            <label for="fecha">Fecha del evento: </label> 
+            <input type="date" required> 
+            <label for="hora">Hora del evento: </label> 
+            <input type="time" required> 
+            <label for="sala">Sala del evento: </label> 
+            <select name="" id="" required> 
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="">No hay salas</option>
+                
+            </select> 
+            <label for="obra">Obra: </label> 
+            <select name="" id="" required>
+                <option value="1">Hamlet</option>
+                <option value="2">Romeo y julieta</option>
+                <option value="3">La divina comedia</option>
+                <option value="">No obras</option>
+            </select> 
+            <input type="submit" class="buttontable" value="Agregar" style="width: 80px;">
+        </form>
+        <form action="crudadmin.php" method="post" class="formcrud">
+            <input type="hidden" name="inicio" value="simon">
+            <input type="hidden" name="crud" value="eventos">
+            <input type="submit" class="buttontable" value="Cancelar" style="width: 80px;">
+        </form>
+      
 
-            </div>
-          </div>
-        </div>
       </div>
+        
     </div>
     <script src="./js/boletos.js"></script>
     <!-- Bootstrap core JS-->
@@ -119,24 +106,5 @@ $paginaadmin = '
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    <script>
-      function cambio(pagina){
-        document.getElementById("nombrecrud").value=pagina;
-        document.getElementById("formulariocrud").submit();
-        
-      }
-    </script>
   </body>
 </html>
-';
-if($_SERVER['REQUEST_METHOD']=='POST'){
-    
-    if($_POST['inicio']=='simon'){
-        echo $paginaadmin;
-    }else{
-        header("location: account.php?err=Es%20necesario%20iniciar%20sesion%20para%20acceder%20comoa%20dministrador");
-    }
-}else{
-    header("location: account.php?err=Es%20necesario%20iniciar%20sesion%20para%20acceder%20comoa%20dministrador");
-}
-?>
