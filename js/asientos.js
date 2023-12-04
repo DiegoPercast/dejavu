@@ -1,22 +1,19 @@
 let seats = document.querySelector(".all-seats");
 for (let i = 0; i < 66; i++) {
-  let randint = Math.floor(Math.random() * 2);
-  let booked = randint === 1 ? "booked" : "";
-  let disabled = randint === 1 ? "disabled" : "";
-  let rows = ["A", "B", "C", "D", "E", "F", "G"]
+  let rows = ["A", "B", "C", "D", "E", "F", "G"];
   if (i != 0 && i % 11 !== 0) {
     seats.insertAdjacentHTML(
       "beforeend",
-      `<div class="${booked}"><input type="checkbox" name="tickets" id="s${
+      `<div><input type="checkbox" name="asiento[]" id="s${
         i + 2
-      }" ${disabled}/>
-    <label for="s${i + 2}" class="seat"></label></div>`
+      }" value="s${i+2}"/>
+    <label for="s${i+2}" class="seat"></label></div>`
     );
   } else {
-    let index = (i-1)%10
-    let row = i === 0 ? rows[0] : rows[index+1]
-    console.log(row, i, index)
-    seats.insertAdjacentHTML("beforeend", `<div>${row}</div>`)
+    let index = (i - 1) % 10;
+    let row = i === 0 ? rows[0] : rows[index + 1];
+    console.log(row, i, index);
+    seats.insertAdjacentHTML("beforeend", `<div>${row}</div>`);
   }
 }
 
@@ -29,7 +26,7 @@ tickets.forEach((ticket) => {
     if (ticket.checked) {
       count += 1;
       amount += 200;
-    } else {
+    } else if (amount > 0){
       count -= 1;
       amount -= 200;
     }
