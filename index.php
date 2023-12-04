@@ -43,6 +43,12 @@
             <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
             <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
           </form>
+          <script>
+            function carrito(){
+                document.getElementById("infoinicio").action="carrito.php";
+                document.getElementById("infoinicio").submit();
+            }
+        </script>
           <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
               <a class="navbar-brand" href="#page-top"
@@ -72,7 +78,7 @@
                     <a class="nav-link" href="#academia">Academia</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="carrito.html"
+                    <a class="nav-link" onclick="carrito()" href="#"
                       >Carrito de compras</a>
                   </li>
                   <li class="nav-item">
