@@ -34,6 +34,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 rel="stylesheet"
                 type="text/css"
                 />
+                
                 <!-- Core theme CSS (includes Bootstrap)-->
                 <link rel="stylesheet" href="css/styles.css" />
                 <link rel="stylesheet" href="css/carrito.css" />
@@ -62,7 +63,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item">
-                        <a class="nav-link" href="account.php?tipo=login"
+                        <a class="nav-link" onclick="regresar()" href="#"
+                            >Regresar</a
+                        >
+                        </li>
+                        
+                        <li class="nav-item">
+                        <a class="nav-link" href="account.php?tipo=logout"
                             >Cerrar Sesión</a
                         >
                         </li>
@@ -82,6 +89,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             ';
             $final = '
                     </div>
+                    <script>function eliminarc(a){
+                        document.getElementById("elementoc").value = a;
+                        alert(document.getElementById("elementoc").value);
+                        document.getElementById("eliminar").submit();
+                        }
+                        function regresar(){
+                            document.getElementById("regresar").submit();
+                        }
+                    </script>
                 </main>
             </body>
             </html>
@@ -93,7 +109,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $sql = "SELECT cursos.titulo as 'titulo',
                     cursos.mensualidad as 'mensualidad',
                     cursos.imagen as 'imagen',
-                    compracursos.id_cliente_2 as 'idcliente'
+                    compracursos.id_cliente_2 as 'idcliente',
+                    compracursos.id_compracurso as 'idcompra'
                     FROM compracursos
                     LEFT JOIN cursos
                     ON compracursos.id_curso_2 = cursos.id_curso WHERE compracursos.id_cliente_2=".$_POST['idcuenta']."; 
@@ -110,7 +127,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                                 <div>
                                 <p>'.$row['titulo'].'</p>
                                 <small>Price: $'.$row['mensualidad'].'</small>
-                                <a href="">Remove</a>
+                                <button onclick="eliminarc('."'".$row['idcompra']."'".')">Eliminar</button>
                                 </div>
                             </div>
                             </td>
@@ -121,7 +138,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     }
                     echo '
                         </table>
-
+                        
                         <div class="total-price">
                         <table>
                             <tr>
@@ -144,6 +161,17 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 } else {
                     echo '<td>No se han encontrado registros</td></tr>';
                 }
+                echo '<form action="eliminarcarrito.php" method="post" id="eliminar">
+                <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
+                <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
+                <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
+                <input type="hidden" name="elementoc" value="" id="elementoc">
+            </form>
+            <form action="index.php" method="post" id="regresar">
+                <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
+                <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
+                <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
+            </form>';
                 $result->free();
                 $mysqli->close();
             } else {
