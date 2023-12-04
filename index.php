@@ -47,6 +47,10 @@
             function carrito(){
                 document.getElementById("infoinicio").action="carrito.php";
                 document.getElementById("infoinicio").submit();
+              }
+              function boletos(){
+                document.getElementById("infoinicio").action="asientos.php";
+                document.getElementById("infoinicio").submit();
             }
         </script>
           <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -272,8 +276,8 @@
               if ($result->num_rows > 0) {
                 $i=1;
                   while ($row = $result->fetch_array()) {
+                    
                       echo '
-                      
                       <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item '.$i.'-->
                         <div class="portfolio-item">
@@ -373,6 +377,29 @@
               if ($result->num_rows > 0) {
                 $i=1;
                   while ($row = $result->fetch_array()) {
+                    if($_SERVER['REQUEST_METHOD']=='POST'){
+                      if(isset($_POST['inicio'])){
+                        echo '
+                        <form action="boletos.php" method="post" id="comprarboletos'.$row['id_obra'].'">
+                        ';
+                        if($_POST['inicio']=='usuarioiniciado'){
+                          echo '
+                            <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
+                            <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
+                            <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
+                            <input type="hidden" name="idobra" value="'.$row['id_obra'].'">
+                            <input type="hidden" name="nombreobra" value="'.$row['titulo'].'">
+                            
+                            ';
+                          }else{
+                            echo '
+                            <input type="hidden" name="inicio" value="usuarionoiniciado">
+                            
+                            ';
+                          }
+                          echo "</form>";
+                      }
+                    }
                       echo '
                       <!-- Portfolio item '.$i.' modal popup-->
                       <div
@@ -392,7 +419,7 @@
                                 <div class="col-lg-8">
                                   <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Hamlet</h2>
+                                    <h2 class="text-uppercase">'.$row['titulo'].'</h2>
                                     <p class="item-intro text-muted">
                                       Escrita por '.$row['autor'].'
                                     </p>
@@ -427,9 +454,11 @@
                                       class="btn btn-primary btn-xl text-uppercase"
                                       data-bs-dismiss="modal"
                                       type="button"
-                                    >
+                                      onclick="comprarboletos('."'".$row['id_obra']."'".')"
+                                      >
                                       Comprar boletos
                                     </button>
+                                    
                                   </div>
                                 </div>
                               </div>
@@ -440,6 +469,8 @@
                       ';
                       $i++;
                   }
+                  echo '<script>function comprarboletos(i){document.getElementById("comprarboletos"+i).submit()}</script>
+                  ';
               } else {
                   echo "No se han encontrado registros";
               }

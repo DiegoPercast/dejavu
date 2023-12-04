@@ -61,8 +61,8 @@
           </li>
           
           <li class="nav-item">
-            <button class="nav-link" onclick="carrito()"
-              >Carrito de compras</button>
+            <a class="nav-link" href="#" onclick="carrito()"
+              >Carrito de compras</a>
           </li>
           <script>
             function carrito(){
@@ -235,17 +235,17 @@
                                       </li>
                                     </ul>
                                     <div class="buttons">
-                                      <form action="agregarcarrito.php" method="post" id="añadircursocarrito">
+                                      <form action="agregarcarrito.php" method="post" id="añadircursocarrito'.$row['id_curso'].'">
                                         <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
                                         <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
                                         <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
                                         <input type="hidden" name="cursoselected" value="'.$row['id_curso'].'">
                                       </form>
-                                      <button class="btn btn-primary btn-xl text-uppercase" onclick="agregarcarrito()">
+                                      <button class="btn btn-primary btn-xl text-uppercase" onclick="agregarcarrito('."'".$row['id_curso']."'".')">
                                         <i class="fa-solid fa-cart-plus"></i>
                                         Agregar al carrito
                                       </button>
-                                      <script>function agregarcarrito(){document.getElementById("añadircursocarrito").submit()}</script>
+                                      <script>function agregarcarrito(i){document.getElementById("añadircursocarrito"+i).submit()}</script>
 
                                     </div>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
