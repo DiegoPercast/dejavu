@@ -115,12 +115,12 @@
                     <a class="nav-link" href="#academia">Academia</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="account.php?tipo=login"
+                    <a class="nav-link" href="account.php?tipo=login&direccion="
                       >Iniciar Sesión</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="account.php?tipo=signup"
+                    <a class="nav-link" href="account.php?tipo=signup&direccion="
                       >Crear Cuenta</a
                     >
                   </li>
@@ -168,12 +168,12 @@
                     <a class="nav-link" href="#academia">Academia</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="account.php?tipo=login"
+                    <a class="nav-link" href="account.php?tipo=login&direccion="
                       >Iniciar Sesión</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="account.php?tipo=signup"
+                    <a class="nav-link" href="account.php?tipo=signup&direccion="
                       >Crear Cuenta</a
                     >
                   </li>
@@ -312,9 +312,8 @@
         <div class="academia-heading text-uppercase">
           Unete a nuestra academia y cumple tus sueños!
         </div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="academia.php"
-          >Inscribirme ahora</a
-        >
+        <button onclick="redireccionacademia()" class="btn btn-primary btn-xl text-uppercase">Inscribirme ahora</button>
+        
       </div>
     </section>
 
@@ -413,6 +412,7 @@
                                       <i class="fas fa-xmark me-1"></i>
                                       Volver
                                     </button>
+                                    
                                     <button
                                       class="btn btn-primary btn-xl text-uppercase"
                                       data-bs-dismiss="modal"
@@ -431,7 +431,7 @@
                       $i++;
                   }
               } else {
-                  $contenidocrud = "No se han encontrado registros";
+                  echo "No se han encontrado registros";
               }
               $result->free();
               $mysqli->close();
@@ -446,5 +446,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+    <script>
+      function redireccionacademia() {
+        document.getElementById('infoinicio').action = "academia.php";
+        document.getElementById('infoinicio').submit();
+      }
+    </script>
   </body>
 </html>

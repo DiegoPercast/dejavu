@@ -8,10 +8,11 @@ $login = '
     <input type="email" name="correo" id="nombrecorreo" placeholder="Correo electronico" required>
     <input type="password" name="contra" id="contra" placeholder="Contraseña" required>
     <input type="hidden" name="typeuser" value="normal">
+    <input type="hidden" name="direccion" value="'.$_GET['direccion'].'">
     <input type="submit" name="submit" class="enviar" value="Iniciar sesión">
 </form>
-<p id="sincuenta">¿No tienes una cuenta? Registrate <a href="account.php?tipo=signup">click aqui</a></p>
-<p id="sincuenta"> Si eres administrador <a href="account.php?tipo=admin">click aqui</a></p>
+<p id="sincuenta">¿No tienes una cuenta? Registrate <a href="account.php?tipo=signup&direccion='.$_GET['direccion'].'">click aqui</a></p>
+<p id="sincuenta"> Si eres administrador <a href="account.php?tipo=admin&direccion=">click aqui</a></p>
 <a href="index.php" class="regresar">Regresar</a>
 </div>';
 
@@ -25,7 +26,7 @@ $admin = '
   <input type="hidden" name="typeuser" value="admin">
   <input type="submit" name="submit" class="enviar" value="Iniciar sesión">
 </form>
-<p id="sincuenta">¿No eres administrador? Inicia sesion <a href="account.php?tipo=login">click aqui</a></p>
+<p id="sincuenta">¿No eres administrador? Inicia sesion <a href="account.php?tipo=login&direccion=">click aqui</a></p>
 <a href="index.php" class="regresar">Regresar</a>
 </div>';
 
@@ -38,9 +39,10 @@ $signup = '
       <input type="text" name="nombre" id="nombrecorreo" placeholder="Nombre completo" required>
       <input type="password" name="contra" id="contra" placeholder="Contraseña" required>
       <input type="hidden" name="typeuser" value="nuevo">
+      <input type="hidden" name="direccion" value="'.$_GET['direccion'].'">
       <input type="submit" name="submit" class="enviar" value="Crear cuenta">
     </form>
-    <p id="sincuenta">¿Tienes una cuenta? Inicia sesión <a href="account.php?tipo=login">click aqui</a></p>
+    <p id="sincuenta">¿Tienes una cuenta? Inicia sesión <a href="account.php?tipo=login&direccion='.$_GET['direccion'].'">click aqui</a></p>
     <a href="index.php" class="regresar">Regresar</a>
 </div>
 ';
@@ -128,15 +130,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                   ';
               }else{
                   $err = "Contraseña incorrecta";
-                  header("location: account.php?err=".$err);
+                  header("location: account.php?direccion=&err=".$err);
               }
               // Se limpia el registro del resultado
               $result->free();
           } else{
               // 
               $err = "No se ha encontrado este usuario, vuelve a intentarlo";
-              header("location: account.php?err=".$err);
-          }
+              header("location: account.php?direccion=&err=".$err);
+            }
       } else{
           $err = "Algo en la conexion está mal";
       }
@@ -145,7 +147,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       $mysqli->close();
     }else{
       $err = "El usuario o contraseña esta mal";
-      header("location: account.php?err=".$err);
+      header("location: account.php?direccion=&err=".$err);
     
     }
   }if($_POST['typeuser']=='nuevo'){
@@ -157,12 +159,18 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $nombre = $_POST['nombre'];
         $inscrito = 'no';
         if($stmt->execute()){
-            header("Location: account.php");
+          if($_POST['direccion']=='academia'){
+            header("Location: account.php?direccion=academia");
+
+          }else{
+            header("Location: account.php?direccion=");
+
+          }
             exit();
         } else{
             $err = "No se ha podido crear la cuenta";
-            header("Location: account.php?err=".$err);
-        }
+            header("location: account.php?direccion=&err=".$err);
+          }
     }
   }
   if($_POST['typeuser']=='normal'){
@@ -202,6 +210,16 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
               
               }
               if($contratabla == $contra){
+                if($_POST['direccion']=='academia'){
+                  echo '
+                  <form action="academia.php" id="sesioniniciada" method="POST">
+                    <input type="hidden" name="correocuenta" value="'.$emailcliente.'">
+                    <input type="hidden" name="idcuenta" value="'.$idcliente.'">
+                    <input type="hidden" name="inicio" value="usuarioiniciado">                 
+                  </form>
+                  <script>document.getElementById("sesioniniciada").submit();</script>
+                  ';
+                }else{
                   echo '
                   <form action="index.php" id="sesioniniciada" method="POST">
                     <input type="hidden" name="correocuenta" value="'.$emailcliente.'">
@@ -210,17 +228,19 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                   </form>
                   <script>document.getElementById("sesioniniciada").submit();</script>
                   ';
+
+                }
               }else{
                   $err = "Contraseña incorrecta";
-                  header("location: account.php?err=".$err);
-              }
+                  header("location: account.php?direccion=&err=".$err);
+                }
               // Se limpia el registro del resultado
               $result->free();
           } else{
               // 
               $err = "No se ha encontrado este usuario, vuelve a intentarlo";
-              header("location: account.php?err=".$err);
-          }
+              header("location: account.php?direccion=&err=".$err);
+            }
       } else{
           $err = "Algo en la conexion está mal";
       }
@@ -229,7 +249,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       $mysqli->close();
     }else{
       $err = "El usuario o contraseña esta mal";
-      header("location: account.php?err=".$err);
+      header("location: account.php?direccion=&err=".$err);
     
     }
   }

@@ -21,6 +21,27 @@
 </head>
 
 <body id="page-top">
+  <!-- Comprobacion de inicio de sesion-->
+  <?php
+  if($_SERVER['REQUEST_METHOD']=='POST'){
+    if(isset($_POST['inicio'])){
+      if($_POST['inicio']=='usuarioiniciado'){
+        echo '
+        <form action="#" method="post" id="infoinicio">
+          <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
+          <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
+          <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
+        </form>';
+      }else{
+        header("Location: account.php?tipo=login&direccion=academia");
+      }
+    }else{
+      header("Location: account.php?tipo=login&direccion=academia");
+    }
+  }else{
+    header("Location: account.php?tipo=login&direccion=academia");
+  }
+  ?>
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
@@ -39,13 +60,7 @@
             <a class="nav-link" href="#portfolio">Cursos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#academia">Academia</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="account.php?tipo=login">Iniciar Sesión</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="account.php?tipo=signup">Crear Cuenta</a>
+            <a class="nav-link" href="account.php?tipo=logout">Cerrar Sesión</a>
           </li>
         </ul>
       </div>
@@ -114,124 +129,44 @@
         </h3>
       </div>
       <div class="row">
-        <div class="col-lg-4 col-sm-6 mb-4">
-          <!-- Portfolio item 1-->
-          <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#cursoModal1">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="assets/img/cursos/1.webp" alt="..." />
-            </a>
-            <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">Musica</div>
-              <div class="portfolio-caption-subheading text-muted">
-                $199
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4">
-          <!-- Portfolio item 2-->
-          <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#cursoModal2">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="assets/img/cursos/2.webp" alt="..." />
-            </a>
-            <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">Canto</div>
-              <div class="portfolio-caption-subheading text-muted">
-                $399
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4">
-          <!-- Portfolio item 3-->
-          <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#cursoModal3">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="assets/img/cursos/3.webp" alt="..." />
-            </a>
-            <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">Actuacion</div>
-              <div class="portfolio-caption-subheading text-muted">
-                $299
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-          <!-- Portfolio item 4-->
-          <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#cursoModal4">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="assets/img/cursos/4.webp" alt="..." />
-            </a>
-            <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">Teatro</div>
-              <div class="portfolio-caption-subheading text-muted">
-                $149
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-          <!-- Portfolio item 5-->
-          <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#cursoModal5">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="assets/img/cursos/5.webp" alt="..." />
-            </a>
-            <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">
-                Escenografía y Vestuario
-              </div>
-              <div class="portfolio-caption-subheading text-muted">
-                $99
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <!-- Portfolio item 6-->
-          <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#cursoModal6">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="assets/img/cursos/6.webp" alt="..." />
-            </a>
-            <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">
-                Pantomima
-              </div>
-              <div class="portfolio-caption-subheading text-muted">
-                $49
-              </div>
-            </div>
-          </div>
-        </div>
+        <?php
+          require "conectar.php";
+          $sql = "SELECT * FROM cursos";
+          if ($result = $mysqli->query($sql)) {
+              if ($result->num_rows > 0) {
+                $i=1;
+                  while ($row = $result->fetch_array()) {
+                      echo '
+                      <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item '.$i.'-->
+                        <div class="portfolio-item">
+                          <a class="portfolio-link" data-bs-toggle="modal" href="#cursoModal'.$i.'">
+                            <div class="portfolio-hover">
+                              <div class="portfolio-hover-content">
+                                <i class="fas fa-plus fa-3x"></i>
+                              </div>
+                            </div>
+                            <img class="img-fluid" src="'.$row['imagen'].'" alt="..." />
+                          </a>
+                          <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">'.$row['titulo'].'</div>
+                            <div class="portfolio-caption-subheading text-muted">
+                              $'.$row['mensualidad'].'
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      ';
+                      $i++;
+                  }
+              } else {
+                  echo "No se han encontrado registros";
+              }
+              $result->free();
+          } else {
+              echo "<script>alert('nojalaconsulta')</script>";
+          }
+          ?>
       </div>
     </div>
   </section>
@@ -251,331 +186,78 @@
     </div>
   </footer>
   <!-- Portfolio Modals-->
+  <?php
+          $sql = "SELECT * FROM cursos";
+          if ($result = $mysqli->query($sql)) {
+              if ($result->num_rows > 0) {
+                $i=1;
+                  while ($row = $result->fetch_array()) {
+                      echo '
+                      
+                      <div class="portfolio-modal modal fade" id="cursoModal'.$i.'" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="close-modal" data-bs-dismiss="modal">
+                              <img src="assets/img/close-icon.svg" alt="Close modal" />
+                            </div>
+                            <div class="container">
+                              <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                  <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">'.$row['titulo'].'</h2>
+                                    <p class="item-intro text-muted">
+                                      A solo $199
+                                    </p>
+                                    <img class="img-fluid d-block mx-auto" src="'.$row['imagen'].'" alt="..." />
+                                    <p>
+                                    '.$row['descripcion'].'
+                                    </p>
+                                    <ul class="list-inline">
+                                      <li>
+                                        <strong>Curso:</strong>
+                                        '.$row['titulo'].'
+                                      </li>
+                                      <li>
+                                        <strong>Precio:</strong>
+                                        $'.$row['mensualidad'].'
+                                      </li>
+                                    </ul>
+                                    <div class="buttons">
+                                      <a class="btn btn-primary btn-xl text-uppercase" href="#">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        Agregar al carrito
+                                      </a>
+                                      <a class="btn btn-primary btn-xl text-uppercase" href="#">
+                                        <i class="fa-solid fa-cash-register"></i>
+                                        Comprar ahora
+                                      </a>
+                                    </div>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                      <i class="fas fa-xmark me-1"></i>
+                                      Volver
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      ';
+                      $i++;
+                  }
+              } else {
+                  echo "No se han encontrado registros";
+              }
+              $result->free();
+              $mysqli->close();
+          } else {
+              echo "<script>alert('nojalaconsulta')</script>";
+          }
+          ?>
   <!-- Portfolio item 1 modal popup-->
-  <div class="portfolio-modal modal fade" id="cursoModal1" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="close-modal" data-bs-dismiss="modal">
-          <img src="assets/img/close-icon.svg" alt="Close modal" />
-        </div>
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <div class="modal-body">
-                <!-- Project details-->
-                <h2 class="text-uppercase">Musica</h2>
-                <p class="item-intro text-muted">
-                  A solo $199
-                </p>
-                <img class="img-fluid d-block mx-auto" src="assets/img/cursos/1.webp" alt="..." />
-                <p>
-                  En este curso de música aprenderás acerca de la naturaleza de la música, teniendo en cuenta las bases
-                  de la melodía, armonía y ritmo, para establecer estrategias que promuevan el análisis y composición de
-                  obras musicales.
-                </p>
-                <ul class="list-inline">
-                  <li>
-                    <strong>Curso:</strong>
-                    Musica
-                  </li>
-                  <li>
-                    <strong>Precio:</strong>
-                    $199
-                  </li>
-                </ul>
-                <div class="buttons">
-                  <a class="btn btn-primary btn-xl text-uppercase" href="#">
-                    <i class="fa-solid fa-cart-plus"></i>
-                    Agregar al carrito
-                  </a>
-                  <a class="btn btn-primary btn-xl text-uppercase" href="#">
-                    <i class="fa-solid fa-cash-register"></i>
-                    Comprar ahora
-                  </a>
-                </div>
-                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                  <i class="fas fa-xmark me-1"></i>
-                  Volver
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Portfolio item 2 modal popup-->
-  <div class="portfolio-modal modal fade" id="cursoModal2" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="close-modal" data-bs-dismiss="modal">
-          <img src="assets/img/close-icon.svg" alt="Close modal" />
-        </div>
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <div class="modal-body">
-                <!-- Project details-->
-                <h2 class="text-uppercase">Canto</h2>
-                <p class="item-intro text-muted">
-                  $399
-                </p>
-                <img class="img-fluid d-block mx-auto" src="assets/img/cursos/2.webp" alt="..." />
-                <p>
-                  En este curso de CANTO de Dejavu Academy, obtendrás las habilidades necesarias para manejar uno de los
-                  instrumentos más complejos estudiados por la humanidad: La voz. Aprenderás los fundamentos de la
-                  técnica vocal, aplicarás procedimientos para reconocer tu tipo de voz y seleccionar la canción que te
-                  favorece, prepararás técnicamente tu pieza, y aplicarás técnicas de respiración y afinación al cantar.
-                </p>
-                <ul class="list-inline">
-                  <li>
-                    <strong>Curso:</strong>
-                    Canto
-                  </li>
-                  <li>
-                    <strong>Precio:</strong>
-                    $399
-                  </li>
-                </ul>
-                <div class="buttons">
-                  <a class="btn btn-primary btn-xl text-uppercase" href="#">
-                    <i class="fa-solid fa-cart-plus"></i>
-                    Agregar al carrito
-                  </a>
-                  <a class="btn btn-primary btn-xl text-uppercase" href="#">
-                    <i class="fa-solid fa-cash-register"></i>
-                    Comprar ahora
-                  </a>
-                </div>
-                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                  <i class="fas fa-xmark me-1"></i>
-                  Volver
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  <!-- Portfolio item 3 modal popup-->
-  <div class="portfolio-modal modal fade" id="cursoModal3" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="close-modal" data-bs-dismiss="modal">
-          <img src="assets/img/close-icon.svg" alt="Close modal" />
-        </div>
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <div class="modal-body">
-                <!-- Project details-->
-                <h2 class="text-uppercase">Actuación</h2>
-                <p class="item-intro text-muted">
-                  $299
-                </p>
-                <img class="img-fluid d-block mx-auto" src="assets/img/cursos/3.webp" alt="..." />
-                <p>
-                  En este curso básico de actuación podrán tener mejor conocimiento de que se trata ser actor. De que
-                  forma los actores logramos nuestro propósito de comunicar. Lograras conectar con tu cuerpo, tu voz y
-                  tus emociones. Cada ejercicio te llevara a implementar técnicas para lograr tu objetivo de comunicar,
-                  sea un texto, una historia o lo que sea que el personaje requiera en su momento.
-                </p>
-                <ul class="list-inline">
-                  <li>
-                    <strong>Curso:</strong>
-                    Actuaciòn
-                  </li>
-                  <li>
-                    <strong>Precio:</strong>
-                    $299
-                  </li>
-                </ul>
-                <div class="buttons">
-                  <a class="btn btn-primary btn-xl text-uppercase" href="#">
-                    <i class="fa-solid fa-cart-plus"></i>
-                    Agregar al carrito
-                  </a>
-                  <a class="btn btn-primary btn-xl text-uppercase" href="#">
-                    <i class="fa-solid fa-cash-register"></i>
-                    Comprar ahora
-                  </a>
-                </div>
-                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                  <i class="fas fa-xmark me-1"></i>
-                  Volver
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Portfolio item 4 modal popup-->
-  <div class="portfolio-modal modal fade" id="cursoModal4" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="close-modal" data-bs-dismiss="modal">
-          <img src="assets/img/close-icon.svg" alt="Close modal" />
-        </div>
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <div class="modal-body">
-                <!-- Project details-->
-                <h2 class="text-uppercase">Teatro</h2>
-                <p class="item-intro text-muted">
-                  $149
-                </p>
-                <img class="img-fluid d-block mx-auto" src="assets/img/cursos/4.webp" alt="..." />
-                <p>
-                  En este curso de teatro aprenderás los fundamentos, los procesos y las actitudes fundamentales, para
-                  elaborar e interpretar obras de teatro y la manera como se pueden planificar, a través de la
-                  elaboración de un guión. Es fácil de aprender y solo se requiere tener conocimientos elementales.
-                </p>
-                <ul class="list-inline">
-                  <li>
-                    <strong>Curso:</strong>
-                    Teatro
-                  </li>
-                  <li>
-                    <strong>Precio:</strong>
-                    $149
-                  </li>
-                </ul>
-                <div class="buttons">
-                  <a class="btn btn-primary btn-xl text-uppercase" href="#">
-                    <i class="fa-solid fa-cart-plus"></i>
-                    Agregar al carrito
-                  </a>
-                  <a class="btn btn-primary btn-xl text-uppercase" href="#">
-                    <i class="fa-solid fa-cash-register"></i>
-                    Comprar ahora
-                  </a>
-                </div>
-                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                  <i class="fas fa-xmark me-1"></i>
-                  Volver
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Portfolio item 5 modal popup-->
-  <div class="portfolio-modal modal fade" id="cursoModal5" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="close-modal" data-bs-dismiss="modal">
-          <img src="assets/img/close-icon.svg" alt="Close modal" />
-        </div>
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <div class="modal-body">
-                <!-- Project details-->
-                <h2 class="text-uppercase">Escenografía y Vestuario</h2>
-                <p class="item-intro text-muted">$99</p>
-                <img class="img-fluid d-block mx-auto" src="assets/img/cursos/5.webp" alt="..." />
-                <p>
-                  ¿Qué hace un diseñador de vestuario? ¿Cuál es la importancia de la escenografía? ¿Qué significa
-                  Dirección de Arte? Son algunas de las preguntas que se plantearán en el recorrido del Curso de
-                  Escenografía y Vestuario ofrecido por Formación al Cuadrado. El objetivo es formar profesionales
-                  conocedores de la historia de estas disciplinas, desarrollar en cada uno de los participantes un
-                  criterio estético y una impronta personal para dejar una marca en cada proyecto en el que participen,
-                  siendo conscientes de la importancia que tiene su tarea dentro de la totalidad de una obra de teatro o
-                  pieza cinematográfica.
-                </p>
-                <ul class="list-inline">
-                  <li>
-                    <strong>Curso:</strong>
-                    Escenografía y Vestuario
-                  </li>
-                  <li>
-                    <strong>Precio:</strong>
-                    $99
-                  </li>
-                </ul>
-                <div class="buttons">
-                  <a class="btn btn-primary btn-xl text-uppercase" href="#">
-                    <i class="fa-solid fa-cart-plus"></i>
-                    Agregar al carrito
-                  </a>
-                  <a class="btn btn-primary btn-xl text-uppercase" href="#">
-                    <i class="fa-solid fa-cash-register"></i>
-                    Comprar ahora
-                  </a>
-                </div>
-                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                  <i class="fas fa-xmark me-1"></i>
-                  Volver
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  <!-- Portfolio item 6 modal popup-->
-  <div class="portfolio-modal modal fade" id="cursoModal6" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="close-modal" data-bs-dismiss="modal">
-          <img src="assets/img/close-icon.svg" alt="Close modal" />
-        </div>
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <div class="modal-body">
-                <!-- Project details-->
-                <h2 class="text-uppercase">Mimo y pantomima</h2>
-                <p class="item-intro text-muted">
-                  $49
-                </p>
-                <img class="img-fluid d-block mx-auto" src="assets/img/cursos/6.webp" alt="..." />
-                <p>
-                  El objetivo del curso es mostrar a los alumnos la importancia de la comunicación gestual como es el
-                  mimo. Trabajar la sensibilidad y diversión de la vida sin necesidad de hablar. Trabajar la
-                  sensibilidad y diversión de la vida sin necesidad de hablar. El único lenguaje es el cuerpo y una de
-                  las maneras y más humanas de expresarse es el mimo.
-                </p>
-                <ul class="list-inline">
-                  <li>
-                    <strong>Curss:</strong>
-                    Mimo y pantomima
-                  </li>
-                  <li>
-                    <strong>Precio:</strong>
-                    $49
-                  </li>
-                </ul>
-                <div class="buttons">
-                  <a class="btn btn-primary btn-xl text-uppercase" href="#">
-                    <i class="fa-solid fa-cart-plus"></i>
-                    Agregar al carrito
-                  </a>
-                  <a class="btn btn-primary btn-xl text-uppercase" href="#">
-                    <i class="fa-solid fa-cash-register"></i>
-                    Comprar ahora
-                  </a>
-                </div>
-                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                  <i class="fas fa-xmark me-1"></i>
-                  Volver
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
   </div>
   <!-- Bootstrap core JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

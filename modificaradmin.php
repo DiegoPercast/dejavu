@@ -248,6 +248,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                                 <input type="number" name="mensualidad"  step=any value="'.$row['mensualidad'].'" required> 
                                 <label for="descripcion">Descripcion del curso: </label> 
                                 <input type="text" name="descripcion" value="'.$row['descripcion'].'" required> 
+                                <label for="imagen">Imagen del curso: </label> 
+                                <input type="text" name="imagen" value="'.$row['imagen'].'" required> 
                                 
                                 ';
                             }
@@ -384,16 +386,17 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     }
                     break;
                 case 'cursos':
-                    $sql = "UPDATE cursos SET titulo=?, mensualidad=?, descripcion=? WHERE id_curso=?";
+                    $sql = "UPDATE cursos SET titulo=?, mensualidad=?, descripcion=?, imagen=? WHERE id_curso=?";
                     if($stmt = $mysqli->prepare($sql)){
                         // Bind variables to the prepared statement as parameters
-                        $stmt->bind_param("sdsi", $titulo, $mensualidad, $descripcion, $id);
+                        $stmt->bind_param("sdssi", $titulo, $mensualidad, $descripcion, $imagen, $id);
                         
                         // Set parameters
                         $id = $_POST['id'];
                         $titulo = $_POST['titulo'];
                         $mensualidad = $_POST['mensualidad'];
                         $descripcion = $_POST['descripcion'];
+                        $imagen = $_POST['imagen'];
                         
                         
                         

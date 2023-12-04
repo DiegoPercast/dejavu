@@ -190,6 +190,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     <input type="number" name="mensualidad"  step=any required> 
                     <label for="descripcion">Descripcion del curso: </label> 
                     <input type="text" name="descripcion" required> 
+                    <label for="imagen">Imagen del curso: </label> 
+                    <input type="text" name="imagen" required> 
                     
                     <input type="hidden" name="inicio" value="simon">
                     <input type="hidden" name="accion" value="procesar">
@@ -252,12 +254,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                   }
                   break;
                 case 'cursos':
-                  $sql = "INSERT INTO cursos (titulo, mensualidad, descripcion) VALUES (?, ?, ?)";
+                  $sql = "INSERT INTO cursos (titulo, mensualidad, descripcion, imagen) VALUES (?, ?, ?, ?)";
                   if($stmt = $mysqli->prepare($sql)){
-                      $stmt->bind_param("sds", $titulo, $mensualidad, $descripcion);
+                      $stmt->bind_param("sdss", $titulo, $mensualidad, $descripcion, $imagen);
                       $titulo = $_POST['titulo'];
                       $mensualidad = $_POST['mensualidad'];
                       $descripcion = $_POST['descripcion'];
+                      $imagen = $_POST['imagen'];
                       
                       if($stmt->execute()){
                           echo "<script>cambio('regresar')</script>";
