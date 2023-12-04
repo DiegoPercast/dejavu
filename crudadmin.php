@@ -138,6 +138,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                       $contenidocrud .= "<td>".$row['email']."</td>";
                       $contenidocrud .= "<td>".$row['contra']."</td>";
                       $contenidocrud .= "<td>".$row['nombre']."</td>";
+                      $contenidocrud .= "<td>".$row['inscrito']."</td>";
                       $contenidocrud.= '<td class="iconostd"><img src="assets/img/icons/ver.png" alt="Ver mas" title="Ver" class="iconstable">';
                       $contenidocrud.= '<form action="modificaradmin.php" method="post">
                                           <input type="hidden" name="inicio" value="simon">
@@ -310,6 +311,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 <th>Email</th>
                 <th>Contraseña</th>
                 <th>Nombre</th>
+                <th>Inscrito</th>
                 <th>Acciones</th>
               </tr>
               '.$contenidocrud.'

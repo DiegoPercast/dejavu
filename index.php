@@ -31,49 +31,162 @@
     <link href="css/styles.css" rel="stylesheet" />
   </head>
   <body id="page-top">
+    <!-- Comprobacion del inicio de sesion -->
+
+    <?php
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+      if(isset($_POST['inicio'])){
+        if($_POST['inicio']=='usuarioiniciado'){
+          echo '
+          <form action="#" method="post" id="infoinicio">
+            <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
+            <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
+            <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
+          </form>
+          <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+              <a class="navbar-brand" href="#page-top"
+                ><img src="assets/img/logos/rojo.png" alt="..." class="icon"
+              /></a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#about">Conócenos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#portfolio">Cartelera</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#academia">Academia</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="account.php?tipo=logout"
+                      >Cerrar sesión</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          ';
+
+        }else{
+          echo '
+          <form action="#" method="post" id="infoinicio">
+            <input type="hidden" name="inicio" value="usuarionoiniciado">
+          </form>
+          <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+              <a class="navbar-brand" href="#page-top"
+                ><img src="assets/img/logos/rojo.png" alt="..." class="icon"
+              /></a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#about">Conócenos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#portfolio">Cartelera</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#academia">Academia</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="account.php?tipo=login"
+                      >Iniciar Sesión</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="account.php?tipo=signup"
+                      >Crear Cuenta</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          ';
+        }
+
+      }else{
+        header("Location: account.php?tipo=logout");
+      }
+    }else{
+      echo '
+          <form action="#" method="post" id="infoinicio">
+            <input type="hidden" name="inicio" value="usuarionoiniciado">
+          </form>
+          <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+              <a class="navbar-brand" href="#page-top"
+                ><img src="assets/img/logos/rojo.png" alt="..." class="icon"
+              /></a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#about">Conócenos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#portfolio">Cartelera</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#academia">Academia</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="account.php?tipo=login"
+                      >Iniciar Sesión</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="account.php?tipo=signup"
+                      >Crear Cuenta</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          ';
+    }
+    ?>
+
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand" href="#page-top"
-          ><img src="assets/img/logos/rojo.png" alt="..." class="icon"
-        /></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          Menu
-          <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#about">Conócenos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#portfolio">Cartelera</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#academia">Academia</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="account.php?tipo=login"
-                >Iniciar Sesión</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="account.php?tipo=signup"
-                >Crear Cuenta</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    
     <!-- Masthead-->
     <header class="masthead">
       <div class="container">
@@ -299,6 +412,13 @@
                                     >
                                       <i class="fas fa-xmark me-1"></i>
                                       Volver
+                                    </button>
+                                    <button
+                                      class="btn btn-primary btn-xl text-uppercase"
+                                      data-bs-dismiss="modal"
+                                      type="button"
+                                    >
+                                      Comprar boletos
                                     </button>
                                   </div>
                                 </div>
