@@ -209,9 +209,58 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     } //if
                     $mysqli->close();
                     break;
+                case 'clientes':
+                    $resultado = "";
+                    //consulta para fecha y hora
+                    $sql = "SELECT * FROM clientes WHERE clientes.id_cliente=".$_POST['id'].";";
+                    if ($result=$mysqli->query($sql)) {
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_array()) {
+                                $resultado.= '
+                                <label for="cliente">Correo del cliente: </label> 
+                                <input type="email" name="email" value="'.$row['email'].'" required> 
+                                <label for="contra">Contraseña del cliente: </label> 
+                                <input type="text" name="contra"  value="'.$row['contra'].'" required>
+                                <label for="nomrbe">Nombre del cliente: </label> 
+                                <input type="text" name="nombre"  value="'.$row['nombre'].'" required>
+                                
+                                ';
+                            }
+                            $result->free();
+                        }
+                        else {
+                        } //if
+                    } else {
+                    } //if
+                    $mysqli->close();
+                    break;
+                case 'cursos':
+                    $resultado = "";
+                    //consulta para fecha y hora
+                    $sql = "SELECT * FROM cursos WHERE cursos.id_curso=".$_POST['id'].";";
+                    if ($result=$mysqli->query($sql)) {
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_array()) {
+                                $resultado.= '
+                                <label for="titulo">Titulo del curso: </label> 
+                                <input type="text" name="titulo" value="'.$row['titulo'].'" required> 
+                                <label for="mensualidad">Mensualidad del curso: </label> 
+                                <input type="number" name="mensualidad"  step=any value="'.$row['mensualidad'].'" required> 
+                                <label for="descripcion">Descripcion del curso: </label> 
+                                <input type="text" name="descripcion" value="'.$row['descripcion'].'" required> 
+                                
+                                ';
+                            }
+                            $result->free();
+                        }
+                        else {
+                        } //if
+                    } else {
+                    } //if
+                    $mysqli->close();
+                    break;
             }
-            $cruds = [
-                "eventos" => '
+            $cruds = '
                 <form action="modificaradmin.php" class="formcrud" method="post">
                     '.$resultado.'
                     <input type="hidden" name="inicio" value="simon">
@@ -220,29 +269,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     <input type="hidden" name="accion" value="procesar">
                     <input type="submit" class="buttontable" value="Modificar" style="width: 80px;">
                 </form>
-                ',
-                "obras" => '
-                <form action="modificaradmin.php" class="formcrud" method="post">
-                    '.$resultado.'
-                    <input type="hidden" name="inicio" value="simon">
-                    <input type="hidden" name="id" value="'.$_POST['id'].'">
-                    <input type="hidden" name="crud" value="'.$_POST['crud'].'">
-                    <input type="hidden" name="accion" value="procesar">
-                    <input type="submit" class="buttontable" value="Modificar" style="width: 80px;">
-                </form>
-                ',
-                "salas" => '
-                <form action="modificaradmin.php" class="formcrud" method="post">
-                    '.$resultado.'
-                    <input type="hidden" name="inicio" value="simon">
-                    <input type="hidden" name="id" value="'.$_POST['id'].'">
-                    <input type="hidden" name="crud" value="'.$_POST['crud'].'">
-                    <input type="hidden" name="accion" value="procesar">
-                    <input type="submit" class="buttontable" value="Modificar" style="width: 80px;">
-                </form>
-                ',
-            ];
-            echo $cruds[$_POST['crud']];
+                ';
+            
+            echo $cruds;
             echo $final;
         }if($_POST['accion']=='procesar'){
             echo $final;
@@ -327,6 +356,62 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         }
                     }
                     break;
+                case 'clientes':
+                    $sql = "UPDATE clientes SET email=?, contra=?, nombre=? WHERE id_cliente=?";
+                    if($stmt = $mysqli->prepare($sql)){
+                        // Bind variables to the prepared statement as parameters
+                        $stmt->bind_param("sssi", $email, $contra, $nombre, $id);
+                        
+                        // Set parameters
+                        $id = $_POST['id'];
+                        $email = $_POST['email'];
+                        $contra = $_POST['contra'];
+                        $nombre = $_POST['nombre'];
+                        
+                        
+                        if($stmt->execute()){
+                            echo '
+                                <form action="crudadmin.php" method="post" class="formcrud" id="regresar">
+                                    <input type="hidden" name="inicio" value="simon">
+                                    <input type="hidden" name="crud" value="'.$_POST['crud'].'">
+                                </form>
+                                <script>document.getElementById("regresar").submit()</script>
+                                ';
+                            exit();
+                        } else{
+                            echo "Oops! Something went wrong. Please try again later.";
+                        }
+                    }
+                    break;
+                case 'cursos':
+                    $sql = "UPDATE cursos SET titulo=?, mensualidad=?, descripcion=? WHERE id_curso=?";
+                    if($stmt = $mysqli->prepare($sql)){
+                        // Bind variables to the prepared statement as parameters
+                        $stmt->bind_param("sdsi", $titulo, $mensualidad, $descripcion, $id);
+                        
+                        // Set parameters
+                        $id = $_POST['id'];
+                        $titulo = $_POST['titulo'];
+                        $mensualidad = $_POST['mensualidad'];
+                        $descripcion = $_POST['descripcion'];
+                        
+                        
+                        
+                        if($stmt->execute()){
+                            echo '
+                                <form action="crudadmin.php" method="post" class="formcrud" id="regresar">
+                                    <input type="hidden" name="inicio" value="simon">
+                                    <input type="hidden" name="crud" value="'.$_POST['crud'].'">
+                                </form>
+                                <script>document.getElementById("regresar").submit()</script>
+                                ';
+                            exit();
+                        } else{
+                            echo "Oops! Something went wrong. Please try again later.";
+                        }
+                    }
+                    break;
+                    
                 
                 default:
                     # code...

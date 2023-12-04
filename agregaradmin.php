@@ -182,6 +182,21 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     <input type="submit" class="buttontable" value="Agregar" style="width: 80px;">
                 </form>
                 ',
+                "cursos" => '
+                <form action="agregaradmin.php" class="formcrud" method="post">
+                    <label for="titulo">Titulo del curso: </label> 
+                    <input type="text" name="titulo" required> 
+                    <label for="mensualidad">Mensualidad del curso: </label> 
+                    <input type="number" name="mensualidad"  step=any required> 
+                    <label for="descripcion">Descripcion del curso: </label> 
+                    <input type="text" name="descripcion" required> 
+                    
+                    <input type="hidden" name="inicio" value="simon">
+                    <input type="hidden" name="accion" value="procesar">
+                    <input type="hidden" name="crud" value="'.$_POST['crud'].'">
+                    <input type="submit" class="buttontable" value="Agregar" style="width: 80px;">
+                </form>
+                ',
             ];
             echo $cruds[$_POST['crud']];
             echo $final;
@@ -221,21 +236,37 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                       }
                   }
                   break;
-                  case 'salas':
-                    $sql = "INSERT INTO salas (numerocolumnas, numerofilas) VALUES (?, ?)";
-                    if($stmt = $mysqli->prepare($sql)){
-                        $stmt->bind_param("ii", $columnas, $filas);
-                        $columnas = $_POST['columnas'];
-                        $filas = $_POST['filas'];
-                        
-                        if($stmt->execute()){
-                            echo "<script>cambio('regresar')</script>";
-                            exit();
-                        } else{
-                            echo "Algo salió mal. Intente mas tarde.";
-                        }
-                    }
-                break;
+                case 'salas':
+                  $sql = "INSERT INTO salas (numerocolumnas, numerofilas) VALUES (?, ?)";
+                  if($stmt = $mysqli->prepare($sql)){
+                      $stmt->bind_param("ii", $columnas, $filas);
+                      $columnas = $_POST['columnas'];
+                      $filas = $_POST['filas'];
+                      
+                      if($stmt->execute()){
+                          echo "<script>cambio('regresar')</script>";
+                          exit();
+                      } else{
+                          echo "Algo salió mal. Intente mas tarde.";
+                      }
+                  }
+                  break;
+                case 'cursos':
+                  $sql = "INSERT INTO cursos (titulo, mensualidad, descripcion) VALUES (?, ?, ?)";
+                  if($stmt = $mysqli->prepare($sql)){
+                      $stmt->bind_param("sds", $titulo, $mensualidad, $descripcion);
+                      $titulo = $_POST['titulo'];
+                      $mensualidad = $_POST['mensualidad'];
+                      $descripcion = $_POST['descripcion'];
+                      
+                      if($stmt->execute()){
+                          echo "<script>cambio('regresar')</script>";
+                          exit();
+                      } else{
+                          echo "Algo salió mal. Intente mas tarde.";
+                      }
+                  }
+                  break;
               
               
             }

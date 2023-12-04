@@ -90,17 +90,17 @@ $paginaadmin = '
         <div id="sec2" class="adminsection">
           <div class="titlesec">Academia</div>
           <div class="listadmin">
-            <div class="listelement" style="margin-top: 12px;">
+            <div class="listelement" style="margin-top: 12px;" onclick="cambio('."'clientes'".')">
               <img src="assets/img/icons/graduado.png" alt="butacas" class="iconadmin">
-              <h5>Administrar alumnos</h5>
+              <h5>Administrar clientes</h5>
               
             </div>
-            <div class="listelement">
+            <div class="listelement" onclick="cambio('."'cursos'".')">
               <img src="assets/img/icons/graduacion.png" alt="butacas" class="iconadmin">
               <h5>Administrar cursos</h5>
               
             </div>
-            <div class="listelement">
+            <div class="listelement" onclick="cambio('."'compras'".')">
               <img src="assets/img/icons/carrito-de-compras.png" alt="butacas" class="iconadmin">
               <h5>Administrar compras</h5>
 

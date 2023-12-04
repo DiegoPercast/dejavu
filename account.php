@@ -37,6 +37,7 @@ $signup = '
         <input type="email" name="correo" id="nombrecorreo" placeholder="Correo electronico" required>
         <input type="text" name="nombre" id="nombrecorreo" placeholder="Nombre completo" required>
         <input type="password" name="contra" id="contra" placeholder="Contraseña" required>
+        <input type="hidden" name="typeuser" value="nuevo">
         <input type="submit" name="submit" class="enviar" value="Crear cuenta">
     </form>
     <p id="sincuenta">¿Tienes una cuenta? Inicia sesión <a href="account.php?tipo=login">click aqui</a></p>
@@ -83,6 +84,7 @@ echo '
 //Funciones de inicio de sesion
 //Inicio para los administradores
 if($_SERVER['REQUEST_METHOD']=='POST'){
+  require 'conectar.php';
   if($_POST['typeuser']=='admin'){
 
     $err_correo = "";
@@ -107,7 +109,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
           $contra = $inputcontra;
       }
   
-    require 'conectar.php';
     if(empty($err_contra) && empty($err_correo)){
     
       $sql = "SELECT * FROM administradores WHERE correo ='".$correo."'";
@@ -146,6 +147,21 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       $err = "El usuario o contraseña esta mal";
       header("location: account.php?err=".$err);
     
+    }
+  }elseif($_POST['typeuser']=='nuevo'){
+    $sql = "INSERT INTO clientes (email, contra, nombre) VALUES (?, ?, ?)";
+    if($stmt = $mysqli->prepare($sql)){
+        $stmt->bind_param("sss", $email, $contra, $nombre);
+        $email = $_POST['correo'];
+        $contra = $_POST['contra'];
+        $nombre = $_POST['nombre'];
+        if($stmt->execute()){
+            header("Location: account.php");
+            exit();
+        } else{
+            $err = "No se ha podido crear la cuenta";
+            header("Location: account.php?err=".$err);
+        }
     }
   }
 }
