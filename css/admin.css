@@ -82,6 +82,7 @@
     overflow-y: auto;
     height: 70%;
 }
+
 .tablaadmin{
     width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.177);
@@ -156,4 +157,48 @@ tr:nth-child(even){
 }
 .imagencrud{
     height: 50px;
+}
+.mirar{
+    height: 15vw;
+}
+@media (max-width: 820px) {
+    .mirar{
+        height: 30vw;
+    }
+    .containeradmin{
+        height: 80vh;
+        overflow-y: auto;
+    }
+    #adminsections{
+        min-height: 70%;
+        min-width: 80%;
+        height: auto;
+        overflow-y: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .adminsection{
+        width: 70%;
+        height: auto;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .iconadmin{
+        height: 30px;
+        width: 30px;
+    }
+    .listelement h5{
+        font-size: 2vh;
+    }
+    .tablacuerpo{
+        width: 90%;
+        margin-top: 20px;
+        overflow-y: auto;
+        height: 70%;
+    }
 }

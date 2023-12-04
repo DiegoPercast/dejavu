@@ -67,3 +67,15 @@ input[type=text], input[type=email], input[type=password]{
   right: 5%;
   bottom: 5%;
 }
+@media (max-width: 820px) {
+  .formaccount{
+    width: 80vw;
+  }
+  .logoform{
+    height: 100px;
+    width: 100px;
+    position: fixed;
+    left: 5%;
+    top: 5%;
+  }
+}

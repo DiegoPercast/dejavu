@@ -31,49 +31,162 @@
     <link href="css/styles.css" rel="stylesheet" />
   </head>
   <body id="page-top">
+    <!-- Comprobacion del inicio de sesion -->
+
+    <?php
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+      if(isset($_POST['inicio'])){
+        if($_POST['inicio']=='usuarioiniciado'){
+          echo '
+          <form action="#" method="post" id="infoinicio">
+            <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
+            <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
+            <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
+          </form>
+          <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+              <a class="navbar-brand" href="#page-top"
+                ><img src="assets/img/logos/rojo.png" alt="..." class="icon"
+              /></a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#about">Conócenos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#portfolio">Cartelera</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#academia">Academia</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="account.php?tipo=logout"
+                      >Cerrar sesión</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          ';
+
+        }else{
+          echo '
+          <form action="#" method="post" id="infoinicio">
+            <input type="hidden" name="inicio" value="usuarionoiniciado">
+          </form>
+          <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+              <a class="navbar-brand" href="#page-top"
+                ><img src="assets/img/logos/rojo.png" alt="..." class="icon"
+              /></a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#about">Conócenos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#portfolio">Cartelera</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#academia">Academia</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="account.php?tipo=login"
+                      >Iniciar Sesión</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="account.php?tipo=signup"
+                      >Crear Cuenta</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          ';
+        }
+
+      }else{
+        header("Location: account.php?tipo=logout");
+      }
+    }else{
+      echo '
+          <form action="#" method="post" id="infoinicio">
+            <input type="hidden" name="inicio" value="usuarionoiniciado">
+          </form>
+          <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+              <a class="navbar-brand" href="#page-top"
+                ><img src="assets/img/logos/rojo.png" alt="..." class="icon"
+              /></a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#about">Conócenos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#portfolio">Cartelera</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#academia">Academia</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="account.php?tipo=login"
+                      >Iniciar Sesión</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="account.php?tipo=signup"
+                      >Crear Cuenta</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          ';
+    }
+    ?>
+
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand" href="#page-top"
-          ><img src="assets/img/logos/rojo.png" alt="..." class="icon"
-        /></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          Menu
-          <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#about">Conócenos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#portfolio">Cartelera</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#academia">Academia</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="account.php?tipo=login"
-                >Iniciar Sesión</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="account.php?tipo=signup"
-                >Crear Cuenta</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    
     <!-- Masthead-->
     <header class="masthead">
       <div class="container">
@@ -142,172 +255,53 @@
           </h3>
         </div>
         <div class="row">
-          <div class="col-lg-4 col-sm-6 mb-4">
-            <!-- Portfolio item 1-->
-            <div class="portfolio-item">
-              <a
-                class="portfolio-link"
-                data-bs-toggle="modal"
-                href="#portfolioModal1"
-              >
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content">
-                    <i class="fas fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img
-                  class="img-fluid"
-                  src="assets/img/portfolio/1.webp"
-                  alt="..."
-                />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Hamlet</div>
-                <div class="portfolio-caption-subheading text-muted">
-                  William Shakespeare
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6 mb-4">
-            <!-- Portfolio item 2-->
-            <div class="portfolio-item">
-              <a
-                class="portfolio-link"
-                data-bs-toggle="modal"
-                href="#portfolioModal2"
-              >
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content">
-                    <i class="fas fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img
-                  class="img-fluid"
-                  src="assets/img/portfolio/2.webp"
-                  alt="..."
-                />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Romeo y Julieta</div>
-                <div class="portfolio-caption-subheading text-muted">
-                  William Shakespeare
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6 mb-4">
-            <!-- Portfolio item 3-->
-            <div class="portfolio-item">
-              <a
-                class="portfolio-link"
-                data-bs-toggle="modal"
-                href="#portfolioModal3"
-              >
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content">
-                    <i class="fas fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img
-                  class="img-fluid"
-                  src="assets/img/portfolio/3.webp"
-                  alt="..."
-                />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">La Divina Comedia</div>
-                <div class="portfolio-caption-subheading text-muted">
-                  Dante Alighieri
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-            <!-- Portfolio item 4-->
-            <div class="portfolio-item">
-              <a
-                class="portfolio-link"
-                data-bs-toggle="modal"
-                href="#portfolioModal4"
-              >
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content">
-                    <i class="fas fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img
-                  class="img-fluid"
-                  src="assets/img/portfolio/4.webp"
-                  alt="..."
-                />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">La vida es un sueño</div>
-                <div class="portfolio-caption-subheading text-muted">
-                  Pedro Calderón de la Barca
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-            <!-- Portfolio item 5-->
-            <div class="portfolio-item">
-              <a
-                class="portfolio-link"
-                data-bs-toggle="modal"
-                href="#portfolioModal5"
-              >
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content">
-                    <i class="fas fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img
-                  class="img-fluid"
-                  src="assets/img/portfolio/5.webp"
-                  alt="..."
-                />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">
-                  El fantasma de la opera
-                </div>
-                <div class="portfolio-caption-subheading text-muted">
-                  Gaston Leroux
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <!-- Portfolio item 6-->
-            <div class="portfolio-item">
-              <a
-                class="portfolio-link"
-                data-bs-toggle="modal"
-                href="#portfolioModal6"
-              >
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content">
-                    <i class="fas fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img
-                  class="img-fluid"
-                  src="assets/img/portfolio/6.webp"
-                  alt="..."
-                />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">
-                  El sueño de una noche de verano
-                </div>
-                <div class="portfolio-caption-subheading text-muted">
-                  William Shakespeare
-                </div>
-              </div>
-            </div>
-          </div>
+          <?php
+          require "conectar.php";
+          $sql = "SELECT * FROM obras";
+          if ($result = $mysqli->query($sql)) {
+              if ($result->num_rows > 0) {
+                $i=1;
+                  while ($row = $result->fetch_array()) {
+                      echo '
+                      
+                      <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item '.$i.'-->
+                        <div class="portfolio-item">
+                          <a
+                            class="portfolio-link"
+                            data-bs-toggle="modal"
+                            href="#portfolioModal'.$i.'"
+                          >
+                            <div class="portfolio-hover">
+                              <div class="portfolio-hover-content">
+                                <i class="fas fa-plus fa-3x"></i>
+                              </div>
+                            </div>
+                            <img
+                              class="img-fluid"
+                              src="'.$row['imagen'].'"
+                              alt="..."
+                            />
+                          </a>
+                          <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">'.$row['titulo'].'</div>
+                            <div class="portfolio-caption-subheading text-muted">
+                            '.$row['autor'].'
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      ';
+                      $i++;
+                  }
+              } else {
+                  $contenidocrud = "No se han encontrado registros";
+              }
+              $result->free();
+          } else {
+              echo "<script>alert('nojalaconsulta')</script>";
+          }
+          ?>        
         </div>
       </div>
     </section>
@@ -363,377 +357,91 @@
       </div>
     </footer>
     <!-- Portfolio Modals-->
-    <!-- Portfolio item 1 modal popup-->
-    <div
-      class="portfolio-modal modal fade"
-      id="portfolioModal1"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-bs-dismiss="modal">
-            <img src="assets/img/close-icon.svg" alt="Close modal" />
-          </div>
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <div class="modal-body">
-                  <!-- Project details-->
-                  <h2 class="text-uppercase">Hamlet</h2>
-                  <p class="item-intro text-muted">
-                    Escrita por William Shakespeare
-                  </p>
-                  <img
-                    class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/1.webp"
-                    alt="..."
-                  />
-                  <p>
-                    Escrita por William Shakespeare entre 1599 y 1601, Hamlet
-                    nos cuenta la historia del príncipe de Dinamarca, el cual
-                    enloquece al saber que su padre fue asesinado por su tío. La
-                    obra abarca temas como la venganza, la traición, la locura e
-                    incluso el incesto, siendo el trabajo más extenso de
-                    Shakespeare conocido. Debido a su fama, ha sido adaptada no
-                    sólo al teatro sino también al cine y la televisión.
-                  </p>
-                  <ul class="list-inline">
-                    <li>
-                      <strong>Nombre:</strong>
-                      Hamlet
-                    </li>
-                    <li>
-                      <strong>Autor:</strong>
-                      William Shakespeare
-                    </li>
-                  </ul>
-                  <button
-                    class="btn btn-primary btn-xl text-uppercase"
-                    data-bs-dismiss="modal"
-                    type="button"
-                  >
-                    <i class="fas fa-xmark me-1"></i>
-                    Volver
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Portfolio item 2 modal popup-->
-    <div
-      class="portfolio-modal modal fade"
-      id="portfolioModal2"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-bs-dismiss="modal">
-            <img src="assets/img/close-icon.svg" alt="Close modal" />
-          </div>
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <div class="modal-body">
-                  <!-- Project details-->
-                  <h2 class="text-uppercase">Romeo y Julieta</h2>
-                  <p class="item-intro text-muted">
-                    Escrita por William Shakespeare
-                  </p>
-                  <img
-                    class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/2.webp"
-                    alt="..."
-                  />
-                  <p>
-                    Ésta es otra de las obras clásicas de Shakespeare y
-                    probablemente la historia romántica más famosa en el mundo.
-                    El número original de esta obra es “La más excelente y
-                    lamentable tragedia de Romeo y Julieta”. La trama cuenta el
-                    enamoramiento de sus dos protagonistas, pertenecientes a
-                    familias enemigas, Montesco y Capuleto. El argumento se
-                    caracteriza por su final trágico, cuando los amantes mueren
-                    tras no poder enfrentarse al odio entre sus parentes.
-                  </p>
-                  <ul class="list-inline">
-                    <li>
-                      <strong>Nombre:</strong>
-                      Romeo y Julieta
-                    </li>
-                    <li>
-                      <strong>Autor:</strong>
-                      William Shakespeare
-                    </li>
-                  </ul>
-                  <button
-                    class="btn btn-primary btn-xl text-uppercase"
-                    data-bs-dismiss="modal"
-                    type="button"
-                  >
-                    <i class="fas fa-xmark me-1"></i>
-                    Volver
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Portfolio item 3 modal popup-->
-    <div
-      class="portfolio-modal modal fade"
-      id="portfolioModal3"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-bs-dismiss="modal">
-            <img src="assets/img/close-icon.svg" alt="Close modal" />
-          </div>
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <div class="modal-body">
-                  <!-- Project details-->
-                  <h2 class="text-uppercase">La Divina Comedia</h2>
-                  <p class="item-intro text-muted">
-                    Escrita por Dante Alighieri
-                  </p>
-                  <img
-                    class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/3.webp"
-                    alt="..."
-                  />
-                  <p>
-                    La adaptación teatral se basa en el poema del mismo nombre,
-                    por Dante Alighieri, que narra el viaje de su protagonista
-                    por el paraíso, el purgatorio y el infierno. Lo más
-                    interesante sobre esta obra, son sus múltiples referencias a
-                    la religión, la filosofía, las matemáticas y la astronomía,
-                    entre otros conceptos que le rodean de simbolismos diversos.
-                    Traducida a 25 lenguas alrededor del mundo, no es de
-                    extrañar que la poesía de Alighieri haya llegado al teatro.
-                  </p>
-                  <ul class="list-inline">
-                    <li>
-                      <strong>Nombre:</strong>
-                      La divina Comedia
-                    </li>
-                    <li>
-                      <strong>Autor:</strong>
-                      Dante Alighieri
-                    </li>
-                  </ul>
-                  <button
-                    class="btn btn-primary btn-xl text-uppercase"
-                    data-bs-dismiss="modal"
-                    type="button"
-                  >
-                    <i class="fas fa-xmark me-1"></i>
-                    Volver
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Portfolio item 4 modal popup-->
-    <div
-      class="portfolio-modal modal fade"
-      id="portfolioModal4"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-bs-dismiss="modal">
-            <img src="assets/img/close-icon.svg" alt="Close modal" />
-          </div>
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <div class="modal-body">
-                  <!-- Project details-->
-                  <h2 class="text-uppercase">La vida es un sueño</h2>
-                  <p class="item-intro text-muted">
-                    Escrita por Pedro Calderón de la Barca
-                  </p>
-                  <img
-                    class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/4.webp"
-                    alt="..."
-                  />
-                  <p>
-                    El escritor Pedro Calderón de la Barca dio a conocer esta
-                    obra en 1635, la cual habla sobre un príncipe desterrado de
-                    su reino por su propio padre, debido a una profecía fatal.
-                    Lo que vuelve tan interesante a esta puesta en escena, son
-                    los temas filosóficos y religiosos que componen su trama,
-                    abarcando tópicos de religiones tan variadas como el
-                    hinduismo, el budismo y las tradiciones judeocristianas,
-                    entre otros. Se conoce a ésta como una de las obras más
-                    famosas en español y es clásico que constantemente vuelve a
-                    las tablas.
-                  </p>
-                  <ul class="list-inline">
-                    <li>
-                      <strong>Nombre:</strong>
-                      La vida es un sueño
-                    </li>
-                    <li>
-                      <strong>Autor:</strong>
-                      Pedro Calderon de la Barca
-                    </li>
-                  </ul>
-                  <button
-                    class="btn btn-primary btn-xl text-uppercase"
-                    data-bs-dismiss="modal"
-                    type="button"
-                  >
-                    <i class="fas fa-xmark me-1"></i>
-                    Volver
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Portfolio item 5 modal popup-->
-    <div
-      class="portfolio-modal modal fade"
-      id="portfolioModal5"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-bs-dismiss="modal">
-            <img src="assets/img/close-icon.svg" alt="Close modal" />
-          </div>
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <div class="modal-body">
-                  <!-- Project details-->
-                  <h2 class="text-uppercase">El fantasma de la opera</h2>
-                  <p class="item-intro text-muted">Escrita por Gaston Leroux</p>
-                  <img
-                    class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/5.webp"
-                    alt="..."
-                  />
-                  <p>
-                    Éste es uno de los musicales más aclamados alrededor del
-                    mundo y está basado en la novela de Gaston Leroux, publicada
-                    en 1910. La historia nos presenta a un ser oscuro que
-                    intenta ganarse el amor de Christine Daaé, joven aspirante a
-                    cantante de ópera. Se le considera una obra brillante para
-                    mezclar elementos góticos con géneros como el terror, el
-                    drama y el romance. La adaptación más famosa ha sido la obra
-                    musical para Broadway, a cargo del talentoso Andrew Lloyd
-                    Weber.
-                  </p>
-                  <ul class="list-inline">
-                    <li>
-                      <strong>Nombre:</strong>
-                      El fantasma de la opera
-                    </li>
-                    <li>
-                      <strong>Autor:</strong>
-                      Gasto Leroux
-                    </li>
-                  </ul>
-                  <button
-                    class="btn btn-primary btn-xl text-uppercase"
-                    data-bs-dismiss="modal"
-                    type="button"
-                  >
-                    <i class="fas fa-xmark me-1"></i>
-                    Volver
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Portfolio item 6 modal popup-->
-    <div
-      class="portfolio-modal modal fade"
-      id="portfolioModal6"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-bs-dismiss="modal">
-            <img src="assets/img/close-icon.svg" alt="Close modal" />
-          </div>
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <div class="modal-body">
-                  <!-- Project details-->
-                  <h2 class="text-uppercase">Sueño de una noche de verano</h2>
-                  <p class="item-intro text-muted">
-                    Escrita por William Shakespeare
-                  </p>
-                  <img
-                    class="img-fluid d-block mx-auto"
-                    src="assets/img/portfolio/6.webp"
-                    alt="..."
-                  />
-                  <p>
-                    Una obra más de William Shakespeare, escrita en torno al año
-                    1595. Esta obra presenta un lío amoroso durante la boda de
-                    Teseo, el duque de Atenas e Hipólita, la reina de las
-                    Amazonas. El reino de las hadas se mezcla con el de los
-                    humanos, dando lugar a una divertida y romántica comedia. La
-                    obra ha sido adaptada no sólo al cine, sino también a la
-                    televisión ya los cómics, abarcando incluso comerciales.
-                  </p>
-                  <ul class="list-inline">
-                    <li>
-                      <strong>Nombre:</strong>
-                      Sueño de una noche de verano
-                    </li>
-                    <li>
-                      <strong>Autor:</strong>
-                      William Shakespeare
-                    </li>
-                  </ul>
-                  <button
-                    class="btn btn-primary btn-xl text-uppercase"
-                    data-bs-dismiss="modal"
-                    type="button"
-                  >
-                    <i class="fas fa-xmark me-1"></i>
-                    Volver
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- inicio -->
+    <?php
+          $sql = "SELECT * FROM obras";
+          if ($result = $mysqli->query($sql)) {
+              if ($result->num_rows > 0) {
+                $i=1;
+                  while ($row = $result->fetch_array()) {
+                      echo '
+                      <!-- Portfolio item '.$i.' modal popup-->
+                      <div
+                        class="portfolio-modal modal fade"
+                        id="portfolioModal'.$i.'"
+                        tabindex="-1"
+                        role="dialog"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="close-modal" data-bs-dismiss="modal">
+                              <img src="assets/img/close-icon.svg" alt="Close modal" />
+                            </div>
+                            <div class="container">
+                              <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                  <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Hamlet</h2>
+                                    <p class="item-intro text-muted">
+                                      Escrita por '.$row['autor'].'
+                                    </p>
+                                    <img
+                                      class="img-fluid d-block mx-auto"
+                                      src="'.$row['imagen'].'"
+                                      alt="..."
+                                    />
+                                    <p>
+                                    '.$row['descripcion'].'
+                                    </p>
+                                    <ul class="list-inline">
+                                      <li>
+                                        <strong>Nombre:</strong>
+                                        '.$row['titulo'].'
+                                      </li>
+                                      <li>
+                                        <strong>Autor:</strong>
+                                        '.$row['autor'].'
+                                      </li>
+                                    </ul>
+                                    <button
+                                      class="btn btn-primary btn-xl text-uppercase"
+                                      data-bs-dismiss="modal"
+                                      type="button"
+                                    >
+                                      <i class="fas fa-xmark me-1"></i>
+                                      Volver
+                                    </button>
+                                    <button
+                                      class="btn btn-primary btn-xl text-uppercase"
+                                      data-bs-dismiss="modal"
+                                      type="button"
+                                    >
+                                      Comprar boletos
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      ';
+                      $i++;
+                  }
+              } else {
+                  $contenidocrud = "No se han encontrado registros";
+              }
+              $result->free();
+              $mysqli->close();
+          } else {
+              echo "<script>alert('nojalaconsulta')</script>";
+          }
+          ?>  
+    <!-- final -->
+
+    
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
