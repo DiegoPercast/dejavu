@@ -23,22 +23,22 @@
 <body id="page-top">
   <!-- Comprobacion de inicio de sesion-->
   <?php
-  if($_SERVER['REQUEST_METHOD']=='POST'){
-    if(isset($_POST['inicio'])){
-      if($_POST['inicio']=='usuarioiniciado'){
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['inicio'])) {
+      if ($_POST['inicio'] == 'usuarioiniciado') {
         echo '
         <form action="#" method="post" id="infoinicio">
-          <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
-          <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
-          <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
+          <input type="hidden" name="correocuenta" value="' . $_POST['correocuenta'] . '">
+          <input type="hidden" name="idcuenta" value="' . $_POST['idcuenta'] . '">
+          <input type="hidden" name="inicio" value="' . $_POST['inicio'] . '">
         </form>';
-      }else{
+      } else {
         header("Location: account.php?tipo=login&direccion=academia");
       }
-    }else{
+    } else {
       header("Location: account.php?tipo=login&direccion=academia");
     }
-  }else{
+  } else {
     header("Location: account.php?tipo=login&direccion=academia");
   }
   ?>
@@ -59,14 +59,13 @@
           <li class="nav-item">
             <a class="nav-link" href="#portfolio">Cursos</a>
           </li>
-          
+
           <li class="nav-item">
-            <button class="nav-link" onclick="carrito()"
-              >Carrito de compras</button>
+            <button class="nav-link" onclick="carrito()">Carrito de compras</button>
           </li>
           <script>
-            function carrito(){
-              document.getElementById('infoinicio').action="carrito.php";
+            function carrito() {
+              document.getElementById('infoinicio').action = "carrito.php";
               document.getElementById('infoinicio').submit();
             }
           </script>
@@ -141,43 +140,43 @@
       </div>
       <div class="row">
         <?php
-          require "conectar.php";
-          $sql = "SELECT * FROM cursos";
-          if ($result = $mysqli->query($sql)) {
-              if ($result->num_rows > 0) {
-                $i=1;
-                  while ($row = $result->fetch_array()) {
-                      echo '
+        require "conectar.php";
+        $sql = "SELECT * FROM cursos";
+        if ($result = $mysqli->query($sql)) {
+          if ($result->num_rows > 0) {
+            $i = 1;
+            while ($row = $result->fetch_array()) {
+              echo '
                       <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item '.$i.'-->
+                        <!-- Portfolio item ' . $i . '-->
                         <div class="portfolio-item">
-                          <a class="portfolio-link" data-bs-toggle="modal" href="#cursoModal'.$i.'">
+                          <a class="portfolio-link" data-bs-toggle="modal" href="#cursoModal' . $i . '">
                             <div class="portfolio-hover">
                               <div class="portfolio-hover-content">
                                 <i class="fas fa-plus fa-3x"></i>
                               </div>
                             </div>
-                            <img class="img-fluid" src="'.$row['imagen'].'" alt="..." />
+                            <img class="img-fluid" src="' . $row['imagen'] . '" alt="..." />
                           </a>
                           <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">'.$row['titulo'].'</div>
+                            <div class="portfolio-caption-heading">' . $row['titulo'] . '</div>
                             <div class="portfolio-caption-subheading text-muted">
-                              $'.$row['mensualidad'].'
+                              $' . $row['mensualidad'] . '
                             </div>
                           </div>
                         </div>
                       </div>
                       ';
-                      $i++;
-                  }
-              } else {
-                  echo "No se han encontrado registros";
-              }
-              $result->free();
+              $i++;
+            }
           } else {
-              echo "<script>alert('nojalaconsulta')</script>";
+            echo "No se han encontrado registros";
           }
-          ?>
+          $result->free();
+        } else {
+          echo "<script>alert('nojalaconsulta')</script>";
+        }
+        ?>
       </div>
     </div>
   </section>
@@ -198,14 +197,14 @@
   </footer>
   <!-- Portfolio Modals-->
   <?php
-          $sql = "SELECT * FROM cursos";
-          if ($result = $mysqli->query($sql)) {
-              if ($result->num_rows > 0) {
-                $i=1;
-                  while ($row = $result->fetch_array()) {
-                      echo '
+  $sql = "SELECT * FROM cursos";
+  if ($result = $mysqli->query($sql)) {
+    if ($result->num_rows > 0) {
+      $i = 1;
+      while ($row = $result->fetch_array()) {
+        echo '
                       
-                      <div class="portfolio-modal modal fade" id="cursoModal'.$i.'" tabindex="-1" role="dialog" aria-hidden="true">
+                      <div class="portfolio-modal modal fade" id="cursoModal' . $i . '" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="close-modal" data-bs-dismiss="modal">
@@ -216,30 +215,30 @@
                                 <div class="col-lg-8">
                                   <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">'.$row['titulo'].'</h2>
+                                    <h2 class="text-uppercase">' . $row['titulo'] . '</h2>
                                     <p class="item-intro text-muted">
                                       A solo $199
                                     </p>
-                                    <img class="img-fluid d-block mx-auto" src="'.$row['imagen'].'" alt="..." />
+                                    <img class="img-fluid d-block mx-auto" src="' . $row['imagen'] . '" alt="..." />
                                     <p>
-                                    '.$row['descripcion'].'
+                                    ' . $row['descripcion'] . '
                                     </p>
                                     <ul class="list-inline">
                                       <li>
                                         <strong>Curso:</strong>
-                                        '.$row['titulo'].'
+                                        ' . $row['titulo'] . '
                                       </li>
                                       <li>
                                         <strong>Precio:</strong>
-                                        $'.$row['mensualidad'].'
+                                        $' . $row['mensualidad'] . '
                                       </li>
                                     </ul>
                                     <div class="buttons">
                                       <form action="agregarcarrito.php" method="post" id="añadircursocarrito">
-                                        <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
-                                        <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
-                                        <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
-                                        <input type="hidden" name="cursoselected" value="'.$row['id_curso'].'">
+                                        <input type="hidden" name="correocuenta" value="' . $_POST['correocuenta'] . '">
+                                        <input type="hidden" name="idcuenta" value="' . $_POST['idcuenta'] . '">
+                                        <input type="hidden" name="inicio" value="' . $_POST['inicio'] . '">
+                                        <input type="hidden" name="cursoselected" value="' . $row['id_curso'] . '">
                                       </form>
                                       <button class="btn btn-primary btn-xl text-uppercase" onclick="agregarcarrito()">
                                         <i class="fa-solid fa-cart-plus"></i>
@@ -260,19 +259,19 @@
                         </div>
                       </div>
                       ';
-                      $i++;
-                  }
-              } else {
-                  echo "No se han encontrado registros";
-              }
-              $result->free();
-              $mysqli->close();
-          } else {
-              echo "<script>alert('nojalaconsulta')</script>";
-          }
-          ?>
+        $i++;
+      }
+    } else {
+      echo "No se han encontrado registros";
+    }
+    $result->free();
+    $mysqli->close();
+  } else {
+    echo "<script>alert('nojalaconsulta')</script>";
+  }
+  ?>
   <!-- Portfolio item 1 modal popup-->
-  
+
   </div>
   <!-- Bootstrap core JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
