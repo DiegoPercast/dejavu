@@ -136,6 +136,53 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         ';
                         $total+=floatval($row['mensualidad']);
                     }
+                    
+                } else {
+                    echo '<td>No se han encontrado registros</td></tr>';
+                }
+                echo '<form action="eliminarcarrito.php" method="post" id="eliminar">
+                <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
+                <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
+                <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
+                <input type="hidden" name="elementoc" value="" id="elementoc">
+            </form>
+            <form action="index.php" method="post" id="regresar">
+                <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
+                <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
+                <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
+            </form>';
+                $result->free();
+            } else {
+                echo "<script>alert('nojalaconsulta')</script>";
+            }
+            $sql = "SELECT compraboletos.asientos as 'asiento',
+                    obras.titulo as 'titulo',
+                    compraboletos.id_cliente_2 as 'idcliente',
+                    compraboletos.id_compra as 'idcompra'
+                    FROM compraboletos
+                    LEFT JOIN obras
+                    ON compraboletos.id_obra_2 = obras.id_obra WHERE compraboletos.id_cliente_2=".$_POST['idcuenta']."; 
+                    ";
+            if ($result = $mysqli->query($sql)) {
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_array()) {
+                        echo '
+                        <tr>
+                            <td>
+                            <div class="cart-info">
+                                <img src="" alt="..." />
+                                <div>
+                                <p>'.$row['titulo'].'</p>
+                                <small>Price: $200</small>
+                                <button onclick="eliminarc('."'".$row['idcompra']."'".')">Eliminar</button>
+                                </div>
+                            </div>
+                            </td>
+                            <td>$200</td>
+                        </tr>
+                        ';
+                        $total+=250;
+                    }
                     echo '
                         </table>
                         

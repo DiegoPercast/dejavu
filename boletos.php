@@ -23,11 +23,7 @@
     if(isset($_POST['inicio'])){
       if($_POST['inicio']=='usuarioiniciado'){
         echo '
-        <form action="asientos.php" method="post" id="infoinicio">
-          <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
-          <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
-          <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
-        </form>
+        
         <form action="index.php" method="post" id="regresar">
           <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
           <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
@@ -108,6 +104,13 @@
           <span><span class="count">0</span> Tickets</span>
           <div class="amount">0</div>
         </div>
+        <?php
+        echo '
+        <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
+        <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
+        <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
+        ';
+        ?>
         <input type="hidde" name="idobra" value="<?php echo $_POST['idobra']?>">
         <button type="submit" name="guardar_asientos">Reservar</button>
         </form>
