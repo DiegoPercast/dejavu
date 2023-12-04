@@ -59,6 +59,17 @@
           <li class="nav-item">
             <a class="nav-link" href="#portfolio">Cursos</a>
           </li>
+          
+          <li class="nav-item">
+            <button class="nav-link" onclick="carrito()"
+              >Carrito de compras</button>
+          </li>
+          <script>
+            function carrito(){
+              document.getElementById('infoinicio').action="carrito.php";
+              document.getElementById('infoinicio').submit();
+            }
+          </script>
           <li class="nav-item">
             <a class="nav-link" href="account.php?tipo=logout">Cerrar Sesión</a>
           </li>
@@ -224,14 +235,18 @@
                                       </li>
                                     </ul>
                                     <div class="buttons">
-                                      <a class="btn btn-primary btn-xl text-uppercase" href="#">
+                                      <form action="agregarcarrito.php" method="post" id="añadircursocarrito">
+                                        <input type="hidden" name="correocuenta" value="'.$_POST['correocuenta'].'">
+                                        <input type="hidden" name="idcuenta" value="'.$_POST['idcuenta'].'">
+                                        <input type="hidden" name="inicio" value="'.$_POST['inicio'].'">
+                                        <input type="hidden" name="cursoselected" value="'.$row['id_curso'].'">
+                                      </form>
+                                      <button class="btn btn-primary btn-xl text-uppercase" onclick="agregarcarrito()">
                                         <i class="fa-solid fa-cart-plus"></i>
                                         Agregar al carrito
-                                      </a>
-                                      <a class="btn btn-primary btn-xl text-uppercase" href="#">
-                                        <i class="fa-solid fa-cash-register"></i>
-                                        Comprar ahora
-                                      </a>
+                                      </button>
+                                      <script>function agregarcarrito(){document.getElementById("añadircursocarrito").submit()}</script>
+
                                     </div>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                       <i class="fas fa-xmark me-1"></i>

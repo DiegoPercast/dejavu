@@ -274,6 +274,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
               
             }
             $stmt->close();
+            $mysqli->close();
         }
     }else{
         header("location: account.php?err=Es%20necesario%20iniciar%20sesion%20para%20acceder%20comoa%20dministrador");
