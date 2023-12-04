@@ -101,8 +101,8 @@ $paginaadmin = '
               
             </div>
             <div class="listelement">
-              <img src="assets/img/icons/cine.png" alt="butacas" class="iconadmin">
-              <h5>Administrar salas</h5>
+              <img src="assets/img/icons/carrito-de-compras.png" alt="butacas" class="iconadmin">
+              <h5>Administrar compras</h5>
 
             </div>
           </div>

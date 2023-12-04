@@ -58,9 +58,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                       $contenidocrud .= "<td>".$row['id_obra']."</td>";
                       $contenidocrud .= "<td>".$row['titulo']."</td>";
                       $contenidocrud .= "<td>".$row['autor']."</td>";
-                      $contenidocrud .= "<td>".$row['descripcion']."</td>";
-                      $contenidocrud .= "<td><img src='".$row['imagen']."' class='imagencrud'></td>";
-                      $contenidocrud.= '<td class="iconostd"><img src="assets/img/icons/ver.png" alt="Ver mas" title="Ver asientos" class="iconstable">';
+                      $contenidocrud.= '<td class="iconostd">';
+                      $contenidocrud.= '<form action="veradmin.php" method="post">
+                                          <input type="hidden" name="inicio" value="simon">
+                                          <input type="hidden" name="accion" value="formulario">
+                                          <input type="hidden" name="crud" value="obras">
+                                          <input type="hidden" name="id" value="'.$row['id_obra'].'" id="nolose">
+                                          <input type="image" id="image" alt="Login" src="assets/img/icons/ver.png" alt="Ver mas" title="Editar" class="iconstable" style="margin-top:5px;"/>
+                                        </form>';
                       $contenidocrud.= '<form action="modificaradmin.php" method="post">
                                           <input type="hidden" name="inicio" value="simon">
                                           <input type="hidden" name="accion" value="formulario">
@@ -175,8 +180,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 <th>ID Obra</th>
                 <th>Titulo</th>
                 <th>Autor</th>
-                <th>Descripcion</th>
-                <th>Imagen</th>
                 <th>Acciones</th>
               </tr>
               '.$contenidocrud.'
@@ -248,6 +251,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         <link rel="stylesheet" href="./css/admin.css">
         <link rel="stylesheet" href="./css/styles.css" />
         <link rel="stylesheet" href="./css/boletos.css" />
+        <link rel="stylesheet" href="./css/crudresponsive.css" />
       </head>
       <body id="page-top">
         <!--Navigation-->
